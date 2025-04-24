@@ -1,9 +1,15 @@
 {
   "name": "shop-track-back-end",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/api/server.js",
   "scripts": {
+    "dev": "nodemon .",
+    "start": "node .",
     "services:up": "docker compose -f compose.yaml up -d",
+    "services:stop": "docker compose -f compose.yaml stop",
+    "services:down": "docker compose -f compose.yaml down",
+    "lint:check": "prettier --check .",
+    "lint:fix": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,11 +17,15 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
     "pg": "^8.14.1",
+    "prettier": "^3.5.3",
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
     "dotenv": "^16.5.0",
+    "nodemon": "^3.1.10",
     "sequelize-cli": "^6.6.2"
   }
 }

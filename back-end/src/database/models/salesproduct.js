@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       tableName: "salesProducts",
       timestamps: false,
       underscored: true,
-    }
+    },
   );
 
   SalesProduct.associate = (models) => {
