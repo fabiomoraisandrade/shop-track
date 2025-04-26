@@ -1,9 +1,8 @@
-require("dotenv").config();
-const http = require("http");
-
-const { API_PORT = 3001 } = process.env;
 const app = require("./app");
+require("dotenv").config();
 
-const server = http.createServer(app);
+const PORT = process.env.PORT || 3001;
 
-server.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}.`);
+});
