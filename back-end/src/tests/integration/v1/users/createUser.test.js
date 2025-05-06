@@ -31,7 +31,7 @@ describe("Testa criação de usuário", () => {
     });
 
     it('Retorna mensagem: "name" is required', () => {
-      expect(response.body).toBe('"name" is required');
+      expect(response.body.message).toBe('"name" is required');
     });
   });
 
@@ -54,7 +54,7 @@ describe("Testa criação de usuário", () => {
     });
 
     it('Retorna mensagem: "email" is required', () => {
-      expect(response.body).toBe('"email" is required');
+      expect(response.body.message).toBe('"email" is required');
     });
   });
 
@@ -77,7 +77,7 @@ describe("Testa criação de usuário", () => {
     });
 
     it('Retorna mensagem: "password" is required', () => {
-      expect(response.body).toBe('"password" is required');
+      expect(response.body.message).toBe('"password" is required');
     });
   });
 
