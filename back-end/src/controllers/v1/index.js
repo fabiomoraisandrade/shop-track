@@ -1,8 +1,10 @@
 // User
-const createUserController = require("./users/CreateUserController");
-const loginUserController = require("./users/LoginUserController");
+const CreateUserController = require("./users/CreateUserController");
+const LoginUserController = require("./users/LoginUserController");
+const DeleteUserController = require("./users/DeleteUserConroller");
 
 module.exports = {
-  createUserController,
-  loginUserController,
+  CreateUserController,
+  LoginUserController,
+  DeleteUserController,
 };
