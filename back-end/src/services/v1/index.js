@@ -1,10 +1,12 @@
 // User
 const CreateUserService = require("./users/CreateUserService");
-const LoginUserService = require("./users/LoginUserService");
+const GetAllUsersService = require("./users/GetAllUsersService");
 const DeleteUserService = require("./users/DeleteUserService");
+const LoginUserService = require("./users/LoginUserService");
 
 module.exports = {
   CreateUserService,
-  LoginUserService,
+  GetAllUsersService,
   DeleteUserService,
+  LoginUserService,
 };
