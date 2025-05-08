@@ -2,28 +2,25 @@ const request = require("supertest");
 const app = require("../../../../api/app");
 
 describe("Testa criação de usuário", () => {
-  // let token;
+  let token;
 
-  // beforeAll(async () => {
-  //   const res = await request(app)
-  //     .post("/login")
-  //     .send({ email: "adm@deliveryapp.com", password: "--adm2@21!!--" });
+  beforeAll(async () => {
+    const res = await request(app)
+      .post("/api/v1/login")
+      .send({ email: "email1@teste.com", password: "123456" });
 
-  //   token = res.body.token;
-  // });
+    token = res.body.token;
+  });
 
   describe("Testa rota sem enviar nome", () => {
     let response;
 
     beforeAll(async () => {
-      response = await request(app)
-        .post("/api/v1/users")
-        // .set("authorization", token)
-        .send({
-          email: "emailteste007@email.com",
-          password: "244466666",
-          role: "administrator",
-        });
+      response = await request(app).post("/api/v1/users").send({
+        email: "emailteste007@email.com",
+        password: "244466666",
+        role: "administrator",
+      });
     });
 
     it("Retorna status 400", () => {
@@ -39,14 +36,11 @@ describe("Testa criação de usuário", () => {
     let response;
 
     beforeAll(async () => {
-      response = await request(app)
-        .post("/api/v1/users")
-        // .set("authorization", token)
-        .send({
-          name: "John Doe Foo Bar",
-          password: "244466666",
-          role: "administrator",
-        });
+      response = await request(app).post("/api/v1/users").send({
+        name: "John Doe Foo Bar",
+        password: "244466666",
+        role: "administrator",
+      });
     });
 
     it("Retorna status 400", () => {
@@ -62,14 +56,11 @@ describe("Testa criação de usuário", () => {
     let response;
 
     beforeAll(async () => {
-      response = await request(app)
-        .post("/api/v1/users")
-        // .set("authorization", token)
-        .send({
-          name: "John Doe Foo Bar",
-          email: "emailteste007@email.com",
-          role: "administrator",
-        });
+      response = await request(app).post("/api/v1/users").send({
+        name: "John Doe Foo Bar",
+        email: "emailteste007@email.com",
+        role: "administrator",
+      });
     });
 
     it("Retorna status 400", () => {
@@ -81,29 +72,26 @@ describe("Testa criação de usuário", () => {
     });
   });
 
-  // describe("Testa criação com email duplicado", () => {
-  //   let response;
+  describe("Testa criação com email duplicado", () => {
+    let response;
 
-  //   beforeAll(async () => {
-  //     response = await request(app)
-  //       .post("/users")
-  //       .set("authorization", token)
-  //       .send({
-  //         name: "John Doe Foo Bar",
-  //         email: "adm@deliveryapp.com",
-  //         password: "244466666",
-  //         role: "administrator",
-  //       });
-  //   });
+    beforeAll(async () => {
+      response = await request(app).post("/api/v1/users").send({
+        name: "John Doe Foo Bar",
+        email: "email1@teste.com",
+        password: "123456",
+        role: "administrator",
+      });
+    });
 
-  //   it("Retorna status 409", () => {
-  //     expect(response.status).toBe(409);
-  //   });
+    it("Retorna status 409", () => {
+      expect(response.status).toBe(409);
+    });
 
-  //   it("Retorna mensagem: Email already registered", () => {
-  //     expect(response.body).toBe("Email already registered");
-  //   });
-  // });
+    it("Retorna mensagem: Email already registered", () => {
+      expect(response.body.message).toBe("Email alredy registered");
+    });
+  });
 
   describe("Testa criação com sucesso", () => {
     let response;
@@ -123,13 +111,13 @@ describe("Testa criação de usuário", () => {
       userId = response.body.id;
     });
 
-    // afterAll(async () => {
-    //   if (userId) {
-    //     await request(app)
-    //       .delete(`/users/${userId}`)
-    //       .set("authorization", token);
-    //   }
-    // });
+    afterAll(async () => {
+      if (userId) {
+        await request(app)
+          .delete(`/api/v1/users/${userId}`)
+          .set("Authorization", `Bearer ${token}`);
+      }
+    });
 
     it("Retorna status 201", () => {
       expect(response.status).toBe(201);
