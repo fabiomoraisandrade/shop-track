@@ -1,7 +1,7 @@
 const { StatusCodes } = require("http-status-codes");
 const { LoginUserService } = require("../../../services/v1");
 
-const loginUser = async (req, res, _next) => {
+const loginUserController = async (req, res, _next) => {
   const { body } = req;
 
   const token = await LoginUserService(body);
@@ -9,4 +9,4 @@ const loginUser = async (req, res, _next) => {
   return res.status(StatusCodes.OK).json(token);
 };
 
-module.exports = loginUser;
+module.exports = loginUserController;
