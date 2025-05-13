@@ -7,6 +7,9 @@ const UpdateUserService = require("./users/UpdateUserService");
 const DeleteUserService = require("./users/DeleteUserService");
 const LoginUserService = require("./users/LoginUserService");
 
+// Product
+const CreateProductService = require("./products/CreateProductService");
+
 module.exports = {
   CreateUserService,
   CreateUserAdmService,
@@ -15,4 +18,6 @@ module.exports = {
   UpdateUserService,
   DeleteUserService,
   LoginUserService,
+
+  CreateProductService,
 };

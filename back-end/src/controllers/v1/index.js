@@ -7,6 +7,9 @@ const UpdateUserController = require("./users/UpdateUserController");
 const DeleteUserController = require("./users/DeleteUserConroller");
 const LoginUserController = require("./users/LoginUserController");
 
+// Product
+const CreateProductController = require("./products/CreateProductController");
+
 module.exports = {
   CreateUserController,
   CreateUserAdmController,
@@ -15,4 +18,6 @@ module.exports = {
   UpdateUserController,
   DeleteUserController,
   LoginUserController,
+
+  CreateProductController,
 };
