@@ -3,6 +3,7 @@ const rescue = require("express-rescue");
 const {
   CreateProductController,
   GetAllProductsController,
+  GetProductByIdController,
 } = require("../../controllers/v1");
 const authorizeToken = require("../../middlewares/authorizeToken");
 
@@ -15,6 +16,11 @@ productsRouter.get(
   "/",
   rescue(authorizeToken),
   rescue(GetAllProductsController),
+);
+productsRouter.get(
+  "/:id",
+  rescue(authorizeToken),
+  rescue(GetProductByIdController),
 );
 
 module.exports = productsRouter;

@@ -10,6 +10,7 @@ const LoginUserController = require("./users/LoginUserController");
 // Product
 const CreateProductController = require("./products/CreateProductController");
 const GetAllProductsController = require("./products/GetAllProductsController");
+const GetProductByIdController = require("./products/GetProductByIdController");
 
 module.exports = {
   CreateUserController,
@@ -22,4 +23,5 @@ module.exports = {
 
   CreateProductController,
   GetAllProductsController,
+  GetProductByIdController,
 };
