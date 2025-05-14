@@ -12,6 +12,7 @@ const CreateProductService = require("./products/CreateProductService");
 const GetAllProductsService = require("./products/GetAllProductsService");
 const GetProductByTermService = require("./products/GetProductsByTermService");
 const GetProductByIdService = require("./products/GetProductByIdService");
+const UpdateProductService = require("./products/UpdateProductService");
 const DeleteProductService = require("./products/DeleteProductService");
 
 module.exports = {
@@ -27,5 +28,6 @@ module.exports = {
   GetAllProductsService,
   GetProductByTermService,
   GetProductByIdService,
+  UpdateProductService,
   DeleteProductService,
 };

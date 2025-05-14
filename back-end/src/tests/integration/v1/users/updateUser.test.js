@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../../../../api/app");
 
-describe("Testa updateUser com supertest", () => {
+describe("Testa updateUser", () => {
   let response;
   let getUser;
   let createdUserId;

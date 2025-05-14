@@ -24,7 +24,7 @@ describe("Testa GET /api/v1/products", () => {
       expect(response.status).toBe(200);
     });
 
-    it("Retorna array de usuários", () => {
+    it("Retorna array de produtos", () => {
       expect(Array.isArray(response.body)).toBe(true);
     });
 
@@ -47,7 +47,7 @@ describe("Testa GET /api/v1/products", () => {
       expect(response.status).toBe(200);
     });
 
-    it("Retorna array de usuários", () => {
+    it("Retorna array de produtos", () => {
       expect(Array.isArray(response.body)).toBe(true);
     });
 
