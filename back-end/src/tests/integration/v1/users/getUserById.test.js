@@ -67,8 +67,8 @@ describe("Testa GET /api/v1/users/:id", () => {
         .set("Authorization", `Bearer ${token}`);
     });
 
-    it("Retorna status 400", () => {
-      expect(response.status).toBe(400);
+    it("Retorna status 404", () => {
+      expect(response.status).toBe(404);
     });
   });
 });

@@ -4,6 +4,7 @@ const {
   CreateProductController,
   GetAllProductsController,
   GetProductByIdController,
+  DeleteProductController,
 } = require("../../controllers/v1");
 const authorizeToken = require("../../middlewares/authorizeToken");
 
@@ -21,6 +22,11 @@ productsRouter.get(
   "/:id",
   rescue(authorizeToken),
   rescue(GetProductByIdController),
+);
+productsRouter.delete(
+  "/:id",
+  rescue(authorizeToken),
+  rescue(DeleteProductController),
 );
 
 module.exports = productsRouter;

@@ -37,7 +37,7 @@ describe("Testa GET /api/v1/products/:id", () => {
       expect(response.status).toBe(200);
     });
 
-    it("Retorna o usuário com chaves esperadas", () => {
+    it("Retorna o produto com chaves esperadas", () => {
       expect(response.body).toHaveProperty("id", productId);
       expect(response.body).toHaveProperty("name", "Teste");
       expect(response.body).toHaveProperty("price", "15.00");
@@ -47,13 +47,13 @@ describe("Testa GET /api/v1/products/:id", () => {
       );
     });
 
-    // afterAll(async () => {
-    //   if (productId) {
-    //     await request(app)
-    //       .delete(`/api/v1/products/${productId}`)
-    //       .set("Authorization", `Bearer ${token}`);
-    //   }
-    // });
+    afterAll(async () => {
+      if (productId) {
+        await request(app)
+          .delete(`/api/v1/products/${productId}`)
+          .set("Authorization", `Bearer ${token}`);
+      }
+    });
   });
 
   describe("Testa GET /api/v1/products/id com erro", () => {

@@ -6,7 +6,7 @@ describe("Testa remoção de usuário", () => {
     let token;
     let userId;
     let deleteResponse;
-    // let fetchDeletedUserResponse;
+    let fetchDeletedUserResponse;
 
     beforeAll(async () => {
       const loginResponse = await request(app)
@@ -15,27 +15,22 @@ describe("Testa remoção de usuário", () => {
 
       token = loginResponse.body.token;
 
-      const createUserResponse = await request(app)
-        .post("/api/v1/users")
-        // .set("Authorization", `Bearer ${token}`)
-        .send({
-          name: "John Doe Foo Bar",
-          email: "emailteste007@email.com",
-          password: "32165487",
-          role: "customer",
-        });
+      const createUserResponse = await request(app).post("/api/v1/users").send({
+        name: "John Doe Foo Bar",
+        email: "emailteste007@email.com",
+        password: "32165487",
+        role: "customer",
+      });
 
       userId = createUserResponse.body.id;
 
-      // Deleção do usuário
       deleteResponse = await request(app)
         .delete(`/api/v1/users/${userId}`)
         .set("Authorization", `Bearer ${token}`);
 
-      // Tentativa de obter o usuário deletado
-      // fetchDeletedUserResponse = await request(app)
-      //   .get(`/api/v1/users/${userId}`)
-      //   .set("Authorization", `Bearer ${token}`);
+      fetchDeletedUserResponse = await request(app)
+        .get(`/api/v1/users/${userId}`)
+        .set("Authorization", `Bearer ${token}`);
     });
 
     it("Retorna status 204 - No Content", () => {
@@ -43,9 +38,9 @@ describe("Testa remoção de usuário", () => {
       expect(deleteResponse.body).toEqual({});
     });
 
-    // it("Usuário deletado não é encontrado (status 400)", () => {
-    //   expect(fetchDeletedUserResponse.status).toBe(400);
-    //   expect(fetchDeletedUserResponse.body).toBe("User not found!");
-    // });
+    it("Usuário deletado não é encontrado (status 404)", () => {
+      expect(fetchDeletedUserResponse.status).toBe(404);
+      expect(fetchDeletedUserResponse.body.message).toBe("User not found");
+    });
   });
 });

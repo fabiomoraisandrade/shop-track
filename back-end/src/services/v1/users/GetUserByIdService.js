@@ -1,13 +1,11 @@
 const { User } = require("../../../database/models");
-const ApiError = require("../../../errors/ApiError");
-
-const { badRequest } = ApiError;
+const { notFound } = require("../../../errors/ApiError");
 
 const getUserByIdService = async (id) => {
   const user = await User.findByPk(id, {
     attributes: { exclude: ["password"] },
   });
-  if (!user) return badRequest("User not found!");
+  if (!user) return notFound("User not found");
 
   return user;
 };
