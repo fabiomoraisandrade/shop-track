@@ -1,5 +1,6 @@
 const usersRouter = require("express").Router();
 const rescue = require("express-rescue");
+const authorizeToken = require("../../middlewares/authorizeToken");
 const {
   CreateUserController,
   CreateUserAdmController,
@@ -8,7 +9,6 @@ const {
   UpdateUserController,
   DeleteUserController,
 } = require("../../controllers/v1");
-const authorizeToken = require("../../middlewares/authorizeToken");
 
 usersRouter.post("/", rescue(CreateUserController));
 usersRouter.post(

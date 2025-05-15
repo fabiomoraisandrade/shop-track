@@ -1,5 +1,6 @@
 const productsRouter = require("express").Router();
 const rescue = require("express-rescue");
+const authorizeToken = require("../../middlewares/authorizeToken");
 const {
   CreateProductController,
   GetAllProductsController,
@@ -7,7 +8,6 @@ const {
   DeleteProductController,
   UpdateProductController,
 } = require("../../controllers/v1");
-const authorizeToken = require("../../middlewares/authorizeToken");
 
 productsRouter.post(
   "/",

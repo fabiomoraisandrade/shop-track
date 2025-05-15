@@ -21,6 +21,10 @@ class ApiError {
   static unauthorized(message) {
     throw new ApiError(message, StatusCodes.UNAUTHORIZED);
   }
+
+  static internalError(message) {
+    throw new ApiError(message, StatusCodes.INTERNAL_SERVER_ERROR);
+  }
 }
 
 module.exports = ApiError;

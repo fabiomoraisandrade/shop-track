@@ -1,3 +1,4 @@
+require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const ApiError = require("../errors/ApiError");
 
@@ -7,8 +8,8 @@ const SECRET = process.env.JWT_SECRET;
 
 const validateToken = async (token) => {
   try {
-    const usernfo = jwt.verify(token, SECRET);
-    return usernfo;
+    const userInfo = jwt.verify(token, SECRET);
+    return userInfo;
   } catch (err) {
     return false;
   }
