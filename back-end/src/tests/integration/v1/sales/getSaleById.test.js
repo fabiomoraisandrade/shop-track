@@ -96,13 +96,13 @@ describe("Testa GET /api/v1/sales/:id", () => {
       });
     });
 
-    // afterAll(async () => {
-    //   if (saleId) {
-    //     await request(app)
-    //       .delete(`/api/v1/sales/${saleId}`)
-    //       .set("Authorization", `Bearer ${token}`);
-    //   }
-    // });
+    afterAll(async () => {
+      if (saleId) {
+        await request(app)
+          .delete(`/api/v1/sales/${saleId}`)
+          .set("Authorization", `Bearer ${token}`);
+      }
+    });
   });
 
   describe("Testa GET /api/v1/sales/id com erro", () => {

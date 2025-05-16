@@ -18,6 +18,7 @@ const DeleteProductController = require("./products/DeleteProductController");
 const CreateSaleController = require("./sales/CreateSaleController");
 const GetAllSalesController = require("./sales/GetAllSalesController");
 const GetSaleByIdController = require("./sales/GetSaleByIdController");
+const DeleteSaleController = require("./sales/DeleteSaleController");
 
 module.exports = {
   CreateUserController,
@@ -37,4 +38,5 @@ module.exports = {
   CreateSaleController,
   GetAllSalesController,
   GetSaleByIdController,
+  DeleteSaleController,
 };

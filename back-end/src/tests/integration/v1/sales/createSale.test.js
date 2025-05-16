@@ -26,7 +26,6 @@ describe("Testa CreateSales", () => {
 
   describe("Quando as entradas são inválidas", () => {
     let response;
-    // let sales;
 
     beforeAll(async () => {
       response = await request(app)
@@ -36,12 +35,6 @@ describe("Testa CreateSales", () => {
           ...sale,
           deliveryAddress: "",
         });
-
-      // const getRes = await request(app)
-      //   .get("/api/v1/sales")
-      //   .set("Authorization", `Bearer ${token}`)
-
-      // sales = getRes.body;
     });
 
     it("Retorna status 400", () => {
@@ -53,16 +46,11 @@ describe("Testa CreateSales", () => {
         '"deliveryAddress" is not allowed to be empty',
       );
     });
-
-    // it("Não cria venda no banco", () => {
-    //   const wasCreated = sales.some((s) => s.sellerId === 11);
-    //   expect(wasCreated).toBe(false);
-    // });
   });
 
   describe("Quando é criada com sucesso", () => {
     let response;
-    // let newSale;
+    let newSale;
 
     beforeAll(async () => {
       response = await request(app)
@@ -70,25 +58,25 @@ describe("Testa CreateSales", () => {
         .set("Authorization", `Bearer ${token}`)
         .send(sale);
 
-      // const { id } = response.body;
+      const { id } = response.body;
 
-      // const getRes = await request(app)
-      //   .get(`/api/v1/sales/${id}`)
-      //   .set("Authorization", `Bearer ${token}`)
+      const getRes = await request(app)
+        .get(`/api/v1/sales/${id}`)
+        .set("Authorization", `Bearer ${token}`);
 
-      // newSale = getRes.body;
+      newSale = getRes.body;
     });
 
-    // afterAll(async () => {
-    //   const { id } = response.body;
-    //   await request(app)
-    //     .delete(`/api/v1/sales/${id}`)
-    //     .set("Authorization", `Bearer ${token}`)
-    // });
+    afterAll(async () => {
+      const { id } = response.body;
+      await request(app)
+        .delete(`/api/v1/sales/${id}`)
+        .set("Authorization", `Bearer ${token}`);
+    });
 
-    // it("Cria venda no banco", () => {
-    //   expect(newSale).not.toBeNull();
-    // });
+    it("Cria venda no banco", () => {
+      expect(newSale).not.toBeNull();
+    });
 
     it("Retorna status 201", () => {
       expect(response.status).toBe(201);
