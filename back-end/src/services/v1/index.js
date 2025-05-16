@@ -18,6 +18,7 @@ const DeleteProductService = require("./products/DeleteProductService");
 // Sale
 const CreateSaleService = require("./sales/CreateSaleService");
 const GetAllSalesService = require("./sales/GetAllSalesService");
+const GetSaleByIdService = require("./sales/GetSaleByIdService");
 
 module.exports = {
   CreateUserService,
@@ -37,4 +38,5 @@ module.exports = {
 
   CreateSaleService,
   GetAllSalesService,
+  GetSaleByIdService,
 };
