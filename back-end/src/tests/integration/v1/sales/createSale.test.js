@@ -13,7 +13,7 @@ const sale = {
   ],
 };
 
-describe("Testa CreateSales", () => {
+describe("Testa POST /api/v1/sales", () => {
   let token;
 
   beforeAll(async () => {

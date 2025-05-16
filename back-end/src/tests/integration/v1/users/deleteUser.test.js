@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../../../../api/app");
 
-describe("Testa remoção de usuário", () => {
+describe("Testa DELETE /api/v1/users/:id", () => {
   describe("Quando a deleção do usuário é bem-sucedida", () => {
     let token;
     let userId;

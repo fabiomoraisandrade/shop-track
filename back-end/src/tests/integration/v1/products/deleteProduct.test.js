@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../../../../api/app");
 
-describe("Testa remoção de produto", () => {
+describe("Testa DELETE /api/v1/products/:id", () => {
   describe("Quando a deleção do produto é bem-sucedida", () => {
     let token;
     let productId;

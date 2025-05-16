@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../../../../api/app");
 
-describe("Testa updateProduct", () => {
+describe("Testa PUT /api/v1/products/:id", () => {
   let response;
   let getProduct;
   let createdProductId;

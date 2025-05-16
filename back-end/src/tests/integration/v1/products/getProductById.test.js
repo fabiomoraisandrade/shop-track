@@ -12,7 +12,7 @@ describe("Testa GET /api/v1/products/:id", () => {
     token = res.body.token;
   });
 
-  describe("Testa GET /api/v1/products/:id com sucesso", () => {
+  describe("Testa retorno do produto com sucesso", () => {
     let productId;
     let response;
 
@@ -56,7 +56,7 @@ describe("Testa GET /api/v1/products/:id", () => {
     });
   });
 
-  describe("Testa GET /api/v1/products/id com erro", () => {
+  describe("Testa retorno do produto com erro", () => {
     let response;
 
     beforeAll(async () => {

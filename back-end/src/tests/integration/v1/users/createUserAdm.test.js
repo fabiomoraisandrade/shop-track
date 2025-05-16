@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../../../../api/app");
 
-describe("Testa criação de usuário Admin", () => {
+describe("Testa POST /api/v1/users - Criação de usuário Admin", () => {
   let token;
 
   beforeAll(async () => {

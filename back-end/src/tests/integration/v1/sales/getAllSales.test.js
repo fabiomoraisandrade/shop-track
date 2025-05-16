@@ -13,7 +13,7 @@ describe("Testa GET /api/v1/sales", () => {
     token = res.body.token;
   });
 
-  describe("Testa GET /api/v1/sales com sucesso", () => {
+  describe("Testa retorno de todas as sales com sucesso", () => {
     beforeAll(async () => {
       response = await request(app)
         .get("/api/v1/sales")

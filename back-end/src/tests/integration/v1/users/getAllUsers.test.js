@@ -2,7 +2,7 @@ const request = require("supertest");
 const app = require("../../../../api/app");
 
 describe("Testa GET /api/v1/users", () => {
-  describe("Testa GET /api/v1/users com sucesso", () => {
+  describe("Testa retorno de todos usuários com sucesso", () => {
     let response;
 
     beforeAll(async () => {

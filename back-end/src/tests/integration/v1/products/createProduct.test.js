@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../../../../api/app");
 
-describe("Testa CreateProduct", () => {
+describe("Testa POST /api/v1/products", () => {
   let token;
 
   beforeAll(async () => {

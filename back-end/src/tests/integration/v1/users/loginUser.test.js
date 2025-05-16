@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../../../../api/app");
 
-describe("Testa login de usuários", () => {
+describe("Testa POST /api/v1/login", () => {
   describe("Quando o login é feito com sucesso", () => {
     let response;
 
@@ -36,7 +36,7 @@ describe("Testa login de usuários", () => {
     });
   });
 
-  describe("Quando a pessoa usuária insere dados inválidos", () => {
+  describe("Quando o usuário insere dados inválidos", () => {
     let response;
 
     beforeAll(async () => {
@@ -72,7 +72,7 @@ describe("Testa login de usuários", () => {
     });
   });
 
-  describe("Quando a pessoa usuária não insere senha", () => {
+  describe("Quando o usuário não insere senha", () => {
     let response;
 
     beforeAll(async () => {
