@@ -2,8 +2,9 @@ const request = require("supertest");
 const app = require("../../../../api/app");
 
 describe("Testa GET /api/v1/sales", () => {
-  let response;
   let token;
+  let saleId;
+  let response;
 
   beforeAll(async () => {
     const res = await request(app)
@@ -11,6 +12,31 @@ describe("Testa GET /api/v1/sales", () => {
       .send({ email: "email1@teste.com", password: "123456" });
 
     token = res.body.token;
+
+    const createdSaleResponse = await request(app)
+      .post("/api/v1/sales")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        sellerId: 11,
+        totalPrice: 30.0,
+        deliveryAddress: "Rua Xablau",
+        deliveryNumber: "237",
+        status: "Pendente",
+        products: [
+          { id: 2, quantity: 2 },
+          { id: 15, quantity: 2 },
+        ],
+      });
+
+    saleId = createdSaleResponse.body.id;
+  });
+
+  afterAll(async () => {
+    if (saleId) {
+      await request(app)
+        .delete(`/api/v1/sales/${saleId}`)
+        .set("Authorization", `Bearer ${token}`);
+    }
   });
 
   describe("Testa retorno de todas as sales com sucesso", () => {
