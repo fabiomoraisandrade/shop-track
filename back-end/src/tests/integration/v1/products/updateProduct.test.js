@@ -1,3 +1,4 @@
+const path = require("path");
 const request = require("supertest");
 const app = require("../../../../api/app");
 
@@ -6,6 +7,7 @@ describe("Testa PUT /api/v1/products/:id", () => {
   let getProduct;
   let createdProductId;
   let token;
+  const imagePath = path.resolve(__dirname, "../../../files/test-image.jpg");
 
   const newProduct = {
     name: "Teste Produto",
@@ -22,12 +24,10 @@ describe("Testa PUT /api/v1/products/:id", () => {
 
     const createdResponse = await request(app)
       .post("/api/v1/products")
-      .send({
-        name: "Produto SuperTeste",
-        price: 15.89,
-        urlImage: "http://localhost:3001/images/image-super-teste.jpg",
-      })
-      .set("Authorization", `Bearer ${token}`);
+      .set("Authorization", `Bearer ${token}`)
+      .field("name", "Produto SuperTeste")
+      .field("price", "23.70")
+      .attach("file", imagePath);
 
     createdProductId = createdResponse.body.id;
 

@@ -1,3 +1,4 @@
+const path = require("path");
 const request = require("supertest");
 const app = require("../../../../api/app");
 
@@ -7,6 +8,7 @@ describe("Testa DELETE /api/v1/products/:id", () => {
     let productId;
     let deleteResponse;
     let fetchDeletedProductResponse;
+    const imagePath = path.resolve(__dirname, "../../../files/test-image.jpg");
 
     beforeAll(async () => {
       const loginResponse = await request(app)
@@ -17,12 +19,10 @@ describe("Testa DELETE /api/v1/products/:id", () => {
 
       const createProductResponse = await request(app)
         .post("/api/v1/products")
-        .send({
-          name: "Weissbier 1l",
-          price: 23.7,
-          urlImage: "http://localhost:3001/images/weissbier.jpg",
-        })
-        .set("Authorization", `Bearer ${token}`);
+        .set("Authorization", `Bearer ${token}`)
+        .field("name", "Weissbier 1l")
+        .field("price", "23.70")
+        .attach("file", imagePath);
 
       productId = createProductResponse.body.id;
 

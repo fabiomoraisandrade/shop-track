@@ -1,6 +1,6 @@
+const path = require("path");
 const request = require("supertest");
 const app = require("../../../../api/app");
-const path = require("path");
 
 describe("Testa POST /api/v1/products", () => {
   let token;
