@@ -18,6 +18,16 @@ module.exports = {
         field: "url_image",
         type: Sequelize.STRING(200),
       },
+      seller_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "users",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {

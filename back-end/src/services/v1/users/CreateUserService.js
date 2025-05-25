@@ -26,6 +26,8 @@ const createUserService = async (newUser) => {
 
   if (emailExists) return conflict("Email alredy registered");
 
+  newUser.isAdmin = false;
+
   const hashedPassword = await bcrypt.hash(newUser.password, 10);
 
   const { password, ...userWithoutPassword } = newUser;

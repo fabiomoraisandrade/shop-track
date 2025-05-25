@@ -4,7 +4,7 @@ const schema = joi.object().keys({
   name: joi.string().empty(false).required(),
   email: joi.string().email().empty(false).required(),
   password: joi.string().empty(false).min(6).required(),
-  role: joi.string().empty(false),
+  isAdmin: joi.boolean().required(),
 });
 
 const userValidate = (user) => {

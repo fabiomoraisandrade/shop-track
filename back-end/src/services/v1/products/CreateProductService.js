@@ -1,8 +1,8 @@
-const { Product } = require("../../../database/models");
+const { Product, User } = require("../../../database/models");
 const { validateProduct } = require("../../../validators");
 const ApiError = require("../../../errors/ApiError");
 
-const { badRequest, conflict } = ApiError;
+const { badRequest, conflict, notFound } = ApiError;
 
 const createProductService = async (body) => {
   const error = validateProduct(body);
@@ -10,6 +10,12 @@ const createProductService = async (body) => {
 
   const product = await Product.findOne({ where: { name: body.name } });
   if (product) return conflict("Product already exists");
+
+  const seller = await User.findByPk(body.sellerId);
+  if (!seller) return notFound("Seller not found");
+
+  if (seller.isAdmin)
+    return badRequest("User is not allowed to register a product");
 
   const newProduct = await Product.create({ ...body });
 

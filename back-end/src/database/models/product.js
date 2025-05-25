@@ -6,6 +6,11 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING(100),
       price: DataTypes.DECIMAL(4, 2),
       urlImage: DataTypes.STRING(200),
+      sellerId: {
+        type: DataTypes.INTEGER,
+        field: "seller_id",
+        allowNull: false,
+      },
     },
     {
       tableName: "products",
@@ -13,5 +18,13 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     },
   );
+
+  Product.associate = (models) => {
+    Product.belongsTo(models.User, {
+      foreignKey: "sellerId",
+      as: "seller",
+    });
+  };
+
   return Product;
 };

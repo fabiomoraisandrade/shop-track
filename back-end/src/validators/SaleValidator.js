@@ -2,8 +2,8 @@ const joi = require("joi");
 
 const schema = joi.object().keys({
   userId: joi.number().empty(false).required(),
-  sellerId: joi.number().empty(false).required(),
-  totalPrice: joi.number().empty(false).required(),
+  // sellerId: joi.number().empty(false).required(),
+  // totalPrice: joi.number().empty(false).required(),
   deliveryAddress: joi.string().empty(false).required(),
   deliveryNumber: joi.string().empty(false).required(),
   status: joi.string().empty(false).required(),

@@ -18,6 +18,8 @@ const createUserAdmService = async (newUser) => {
 
   if (emailExists) return conflict("Email alredy registered");
 
+  newUser.isAdmin = true;
+
   const hashedPassword = await bcrypt.hash(newUser.password, 10);
 
   const { password, ...userWithoutPassword } = newUser;

@@ -17,8 +17,10 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
       },
-      role: {
-        type: Sequelize.STRING,
+      isAdmin: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
@@ -30,6 +32,7 @@ module.exports = {
       },
     });
   },
+
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("users");
   },
