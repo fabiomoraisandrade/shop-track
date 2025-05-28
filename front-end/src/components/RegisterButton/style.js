@@ -11,7 +11,7 @@ const Button = styled.button`
     :hover {
         border-color: #22197d;
         color: #22197d;
-    }
+    };
     @media(min-width: 768px) {
         height: 50px;
         width: 45%;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormLogin } from '../components';
 import { MainTag } from '../global-styles/globalComponents';
 

@@ -34,7 +34,7 @@ export const Section = styled.section`
     @media(min-width: 768px) {
         padding: 0 50px;
         height: 500px;
-    }
+    };
 `;
 
 export const Input = styled.input`
@@ -52,21 +52,27 @@ export const Label = styled.label`
 `;
 
 export const Button = styled.button`
-    width: 80%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 20px;
-    background-color: ${(props) => (props.disabled ? "#a6a4bd" : "#4B39FF")};
-    color: #FFF;
-    cursor: ${(props) => (props.disabled ? "default" : "pointer")};
-    :hover {
-        background-color: ${(props) => (props.disabled ? "#a6a4bd" : "#22197d")};
-    };
-    @media(min-width: 768px) {
-        height: 50px;
-        width: 45%;
+  width: 80%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  background-color: ${({ disabled }) => (disabled ? "#a6a4bd" : "#4B39FF")};
+  color: #FFF;
+  cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
+
+  ${({ disabled }) =>
+    !disabled &&
+    `
+    &:hover {
+      background-color: #22197d;
     }
+  `};
+
+  @media(min-width: 768px) {
+    height: 50px;
+    width: 45%;
+  }
 `;
 
 export const P = styled.p`
@@ -87,7 +93,7 @@ export const ButtonsContainer = styled.div`
         flex-direction: row;
         align-items: flex-start;
         justify-content: space-between;
-    }
+    };
 `;
 
 export const Typography = styled.div`

@@ -1,8 +1,8 @@
-import React from 'react';
+import { FaStore } from 'react-icons/fa';
 import { useLogin } from '../../hooks';
 import checkForm from '../../utils';
 import { Button, Section, Input,
-  Label, Main, H1, P, Logo, ButtonsContainer, Typography } from './style';
+  Label, Main, H1, P, ButtonsContainer, Typography } from './style';
 import RegisterButton from '../RegisterButton';
 
 const FormLogin = () => {
@@ -11,7 +11,7 @@ const FormLogin = () => {
     return (
         <Main>
             <Section>
-                <Logo src="" alt="Logo" />
+                <FaStore size={70} color="#4B39FF" style={{ marginBottom: '1rem' }} />
                 <H1>Login</H1>
                 <Label htmlFor="inputEmail">
                     Email
@@ -49,7 +49,7 @@ const FormLogin = () => {
                         data-testid="common_login__element-invalid-email"
                         hidden={ bool }
                     >
-                        Usuário inválido
+                        Email ou senha inválido
                     </P>
                 </ButtonsContainer>
                 <Typography>{generateCopyright()}</Typography>

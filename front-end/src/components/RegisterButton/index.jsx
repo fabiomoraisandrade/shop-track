@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRegisterButton } from '../../hooks';
 import Button from './style';
 

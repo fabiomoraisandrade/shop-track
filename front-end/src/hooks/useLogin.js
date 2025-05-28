@@ -12,7 +12,12 @@ const useLogin = () => {
     const navigate = useNavigate();
 
     const generateCopyright = () => (
-        <Typography>
+        <Typography
+            variant="body2"
+            color="textSecondary"
+            align="center"
+            style={ { fontSize: '12px' } }
+        >
             {"Copyright ©"}
             <Link to="/" color="inherit" href="https://mui.com/material-ui/" style={ { fontSize: "14px" } } >
                 Fast Delivery
