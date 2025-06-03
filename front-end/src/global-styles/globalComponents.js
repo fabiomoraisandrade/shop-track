@@ -10,3 +10,9 @@ export const MainTag = styled.main`
   background-color: whitesmoke;
   min-height: 100vh;
 `;
+
+export const HeaderContainer = styled.header`
+  width: 100vw;
+  height: 100px;
+  margin-bottom: 50px;
+`;

@@ -1,16 +1,22 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { Toaster } from 'sonner';
 import {
   LoginPage,
   Register,
+  CustomerPage,
 } from './pages';
 import './App.css';
 
 const App = () => (
-  <Routes>
-    <Route exact path="/login" element={ <LoginPage /> } />
-    <Route exact path="/register" element={ <Register /> } />
-    <Route exact path="/" element={ <Navigate to="/login" /> } />
-  </Routes>
+  <>
+    <Routes>
+      <Route exact path="/login" element={ <LoginPage /> } />
+      <Route exact path="/register" element={ <Register /> } />
+      <Route exact path="/products/register" element={ <CustomerPage /> } />
+      <Route exact path="/" element={ <Navigate to="/login" /> } />
+    </Routes>
+    <Toaster richColors position="top-center" />
+  </>
 );
 
 export default App;

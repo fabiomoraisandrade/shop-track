@@ -101,3 +101,19 @@ export const Typography = styled.div`
     position: absolute;
     bottom: 3px;
 `;
+
+export const PasswordInputContainer = styled.div`
+  position: relative;
+  width: 80%;
+`;
+
+export const TogglePasswordButton = styled.button`
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #4B39FF;
+`;
