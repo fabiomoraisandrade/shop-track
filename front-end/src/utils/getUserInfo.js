@@ -3,7 +3,6 @@ const getUserInfo = (key) => {
     if (!userString) return null;
 
     const userInfo = JSON.parse(userString);
-    console.log("userInfo:", userInfo);
 
     if (!key) return userInfo;
     return userInfo[key];

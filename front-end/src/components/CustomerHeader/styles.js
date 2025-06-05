@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FaStore } from 'react-icons/fa';
 
 export const Flex = styled.div`
   width: 100%;
@@ -15,11 +16,12 @@ export const Flex = styled.div`
   }
 `;
 
-export const Logo = styled.img`
-    width: 40px;
-    height: 40px;
-    margin: 10px 0;
-  filter: contrast(200%);
+export const IconLogo = styled(FaStore)`
+  width: 40px;
+  height: 40px;
+  margin: 10px 0;
+  color: #4B39FF;
+
   @media(min-width: 768px) {
     width: 50px;
     height: 50px;
@@ -46,7 +48,7 @@ export const NavList = styled.nav`
 `;
 
 export const RedirectButton = styled.button`
-position: relative;
+  position: relative;
   border: none;
   background-color: transparent;
   font-size: 12px;
@@ -54,10 +56,14 @@ position: relative;
   font-weight: 300;
   padding: 5px;
   cursor: pointer;
-  :hover {
-    margin-bottom: -1px;
-    border-bottom: 1px solid black;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+  margin-bottom: -1px;  
+  border-bottom: 1px solid black;
   }
+
   @media(min-width: 768px) {
     font-size: 15px;
   }

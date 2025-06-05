@@ -1,5 +1,5 @@
 import { useCheckLogin } from '../hooks';
-import { CustomerHeader, ProductList } from '../components';
+import { CustomerHeader, ProductForm } from '../components';
 import { MainTag } from '../global-styles/globalComponents';
 
 const CustomerPage = () => {
@@ -8,7 +8,7 @@ const CustomerPage = () => {
   return (
     <MainTag>
       <CustomerHeader />
-      <ProductList />
+      <ProductForm />
     </MainTag>
   );
 };

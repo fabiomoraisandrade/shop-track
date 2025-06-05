@@ -1,5 +1,5 @@
 import { HeaderContainer } from '../../global-styles/globalComponents';
-import { Flex, NavList, RedirectButton, Logo } from './styles';
+import { Flex, NavList, RedirectButton, IconLogo } from './styles';
 import { useHeader } from '../../hooks';
 
 const CustomerHeader = () => {
@@ -8,7 +8,7 @@ const CustomerHeader = () => {
   return (
     <HeaderContainer>
       <Flex>
-        <Logo src="https://cdn.discordapp.com/attachments/888025163139002382/939188740331536384/logoDelivery.png" alt="Logo" />
+        <IconLogo data-testid="customer-header-logo-icon" />
         <NavList>
           <RedirectButton
             data-testid="customer_products__element-navbar-link-products"
@@ -22,14 +22,14 @@ const CustomerHeader = () => {
             type="button"
             // onClick={ () => navigate('/customer/orders') }
           >
-            Cadastrar Produto
+            Meus pedidos
           </RedirectButton>
           <RedirectButton
             data-testid="register_products__element-navbar-link-orders"
             type="button"
             onClick={ () => navigate('/products/register') }
           >
-            Meus pedidos
+            Cadastrar produto
           </RedirectButton>
           <RedirectButton
             data-testid="customer_products__element-navbar-user-full-name"

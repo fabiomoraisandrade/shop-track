@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { FaStore } from 'react-icons/fa';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaSignInAlt, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useLogin } from '../../hooks';
 import checkForm from '../../utils';
 import { 
@@ -16,7 +15,7 @@ const FormLogin = () => {
   return (
     <Main>
       <Section>
-        <FaStore size={70} color="#4B39FF" style={{ marginBottom: '1rem' }} />
+        <FaSignInAlt size={70} color="#4B39FF" style={{ marginBottom: '1rem' }} />
         <H1>Login</H1>
 
         <Label htmlFor="inputEmail">

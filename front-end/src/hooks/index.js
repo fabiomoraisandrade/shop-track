@@ -4,6 +4,8 @@ import useRegisterForm from './useRegisterForm';
 import useProductForm from './useProductForm';
 import useCheckLogin from './useCheckLogin';
 import useHeader from "./useHeader";
+import useCartQuantity from './useCartQuantity';
+import useProductList from './useProductList';
 
 export {
   useLogin,
@@ -12,4 +14,6 @@ export {
   useProductForm,
   useCheckLogin,
   useHeader,
+  useCartQuantity,
+  useProductList,
 };
