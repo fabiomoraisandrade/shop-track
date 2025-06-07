@@ -6,6 +6,7 @@ import useCheckLogin from './useCheckLogin';
 import useHeader from "./useHeader";
 import useCartQuantity from './useCartQuantity';
 import useProductList from './useProductList';
+import useCheckoutTable from "./useCheckoutTable";
 
 export {
   useLogin,
@@ -16,4 +17,5 @@ export {
   useHeader,
   useCartQuantity,
   useProductList,
+  useCheckoutTable
 };

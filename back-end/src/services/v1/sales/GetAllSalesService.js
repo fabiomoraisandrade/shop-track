@@ -3,8 +3,8 @@ const { Sale, User, Product } = require("../../../database/models");
 const getAllSalesService = async () => {
   const sales = await Sale.findAll({
     include: [
-      { model: User, as: "customer" },
-      { model: User, as: "seller" },
+      { model: User, as: "customer", attributes: ["id", "name"] },
+      { model: User, as: "seller", attributes: ["id", "name"] },
       {
         model: Product,
         as: "products",

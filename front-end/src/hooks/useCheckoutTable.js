@@ -38,8 +38,9 @@ const useCheckoutTable = () => {
     const clearStorageCart = () => {
         Swal.fire({
             icon: "warning",
-            title: "Tem certeza que quer apagar todos os itens do carrinho?",
-            showCancelButtonText: "Sim",
+            title: "Deseja apagar todos os itens do carrinho?",
+            showCancelButton: true,
+            confirmButtonText: "Sim",
             cancelButtonText: "Não",
         }).then((result) => {
             if (result.isConfirmed) {
@@ -53,6 +54,7 @@ const useCheckoutTable = () => {
         const dataTestIds = {
             number: `customer_checkout__element-order-table-item-number-${productId}`,
             name: `customer_checkout__element-order-table-name-${productId}`,
+            sellerName: `customer_checkout__element-order-table-seller-name-${productId}`,
             quantity: `customer_checkout__element-order-table-quantity-${productId}`,
             unitPrice: `customer_checkout__element-order-table-unit-price-${productId}`,
             subTotal: `customer_checkout__element-order-table-sub-total-${productId}`,
