@@ -2,7 +2,7 @@ import axios from 'axios';
 import getUserInfo from '../utils/getUserInfo';
 
 const api = axios.create({
-  baseURL: process.env.API_URL || "http://localhost:3001",
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 api.interceptors.request.use((config) => {
