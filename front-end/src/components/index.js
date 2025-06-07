@@ -5,6 +5,7 @@ import CustomerHeader from './CustomerHeader';
 import ProductForm from './ProductForm';
 import ProductList from './ProductList';
 import CheckoutItemList from "./CheckoutItemList"
+import CheckoutConfirm from './CheckoutConfirm';
 
 export {
   FormLogin,
@@ -13,5 +14,6 @@ export {
   CustomerHeader,
   ProductForm,
   ProductList,
-  CheckoutItemList
+  CheckoutItemList,
+  CheckoutConfirm,
 };

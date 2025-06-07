@@ -1,5 +1,5 @@
 import { useCheckLogin } from '../hooks';
-import { CustomerHeader, CheckoutItemList } from "../components";
+import { CustomerHeader, CheckoutItemList, CheckoutConfirm } from "../components";
 import { MainTag } from '../global-styles/globalComponents';
 
 const CustomerCheckout = () => {
@@ -9,6 +9,7 @@ const CustomerCheckout = () => {
         <MainTag>
             <CustomerHeader />
             <CheckoutItemList />
+            <CheckoutConfirm />
         </MainTag>
     );
 }

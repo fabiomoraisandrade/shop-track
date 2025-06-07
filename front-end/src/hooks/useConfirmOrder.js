@@ -17,7 +17,7 @@ const INITIAL_BODY = {
 
 const useConfirmOrder = () => {
     const [bodyInfo, setBodyInfo] = useState(INITIAL_BODY);
-    const [disableBtn, setDisabledBtn] = useState(true);
+    const [disabledBtn, setDisabledBtn] = useState(true);
 
     const userId = getUserInfo("id");
     const cartState = useSelector((state) => state.cart);
@@ -26,6 +26,7 @@ const useConfirmOrder = () => {
 
     const submitSale = async () => {
         const sale = await postSale({
+            ...bodyInfo,
             status: "Pendente",
             products: cartState.cart
         });
@@ -54,7 +55,7 @@ const useConfirmOrder = () => {
 
     }, [bodyInfo, cartState.cart]);
 
-    return { handleChange, disableBtn, submitSale, bodyInfo };
+    return { handleChange, disabledBtn, submitSale, bodyInfo };
 }
 
 export default useConfirmOrder;
