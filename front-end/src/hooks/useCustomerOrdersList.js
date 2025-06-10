@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import getSalesFromCustomer from "../services/getSalesFromCustomer";
 import getUserInfo from "../utils/getUserInfo";
@@ -7,32 +7,30 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
 const socket = io(API_BASE_URL);
 
 const useCustomerOrdersList = () => {
+    const mounted = useRef(false);
     const [orders, setOrders] = useState([]);
     const userId = getUserInfo("id");
 
-    useEffect(() => {
-        const controller = new AbortController();
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
-        const updateOrder = async () => {
-            try {
-                const response = await getSalesFromCustomer(userId, { signal: controller.signal });
-                setOrders(response);
-            } catch (err) {
-                if (err.name !== "AbortError") console.error(err);
-            }
-        };
+  useEffect(() => {
+    const updateOrder = () => {
+      if (mounted.current) {
+        getSalesFromCustomer(userId).then((response) => setOrders(response));
+      }
+    };
 
-        updateOrder();
+    updateOrder();
 
-        socket.on("statusUpdated", updateOrder);
+    socket.on('statusUpdated', () => updateOrder());
+  }, [userId]);
 
-        return () => {
-            controller.abort();
-            socket.off("statusUpdated", updateOrder);
-        };
-    }, [userId]);
-
-    return { orders };
+  return { orders };
 }
 
 export default useCustomerOrdersList;

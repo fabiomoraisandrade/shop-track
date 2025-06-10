@@ -8,6 +8,7 @@ import useCartQuantity from './useCartQuantity';
 import useProductList from './useProductList';
 import useCheckoutTable from "./useCheckoutTable";
 import useConfirmOrder from './useConfirmOrder';
+import useCustomerOrdersList from './useCustomerOrdersList';
 
 export {
   useLogin,
@@ -19,5 +20,6 @@ export {
   useCartQuantity,
   useProductList,
   useCheckoutTable,
-  useConfirmOrder
+  useConfirmOrder,
+  useCustomerOrdersList,
 };

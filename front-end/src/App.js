@@ -6,6 +6,7 @@ import {
   CustomerPage,
   RegisterProduct,
   CustomerCheckout,
+  CustomerOrders,
 } from './pages';
 import './App.css';
 
@@ -17,6 +18,7 @@ const App = () => (
       <Route exact path="/products" element={ <CustomerPage /> } />
       <Route exact path="/products/register" element={ <RegisterProduct /> } />
       <Route exact path="/customer/checkout" element={ <CustomerCheckout /> } />
+      <Route exact path="/customer/orders" element={ <CustomerOrders /> } />
       <Route exact path="/" element={ <Navigate to="/login" /> } />
     </Routes>
     <Toaster richColors position="top-center" />

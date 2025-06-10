@@ -20,7 +20,7 @@ const CustomerHeader = () => {
           <RedirectButton
             data-testid="customer_products__element-navbar-link-orders"
             type="button"
-            // onClick={ () => navigate('/customer/orders') }
+            onClick={ () => navigate('/customer/orders') }
           >
             Meus pedidos
           </RedirectButton>

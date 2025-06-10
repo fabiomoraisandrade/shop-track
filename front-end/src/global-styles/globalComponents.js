@@ -16,3 +16,19 @@ export const HeaderContainer = styled.header`
   height: 100px;
   margin-bottom: 50px;
 `;
+
+export const OrderListContainer = styled.section`
+  width: 100vw;
+  max-width: 1024px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+  @media(min-width: 768px) {
+    justify-content: space-around;
+    flex-direction: row;
+  }
+`;

@@ -1,16 +1,12 @@
 import api from "./API";
 
-const getSalesFromCustomer = async (customerId, options = {}) => {
+const getSalesFromCustomer = async (customerId) => {
   try {
-    const result = await api.get("/api/v1/sales", options);
+    const result = await api.get("/api/v1/sales");
 
     return result.data.filter((sale) => sale.userId === customerId);
   } catch (err) {
-    if (err.name === 'CanceledError') {
-      console.log('Requisição cancelada');
-    } else {
-      console.error(`Erro ao buscar vendas: ${err}`);
-    }
+    console.error(`Erro ao buscar vendas: ${err}`);
     return { error: err.response };
   }
 };
