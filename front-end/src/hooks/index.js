@@ -9,6 +9,7 @@ import useProductList from './useProductList';
 import useCheckoutTable from "./useCheckoutTable";
 import useConfirmOrder from './useConfirmOrder';
 import useCustomerOrdersList from './useCustomerOrdersList';
+import useCustomerOrderDetails from './useCustomerOrderDetails';
 
 export {
   useLogin,
@@ -22,4 +23,5 @@ export {
   useCheckoutTable,
   useConfirmOrder,
   useCustomerOrdersList,
+  useCustomerOrderDetails,
 };
