@@ -4,6 +4,7 @@ import CustomerPage from './CustomerPage';
 import RegisterProduct from "./RegisterProduct";
 import CustomerCheckout from './CustomerCheckout';
 import CustomerOrders from './CustomerOrders';
+import CustomerOrderDetails from './CustomerOrderDetails';
 
 export {
     LoginPage,
@@ -12,4 +13,5 @@ export {
     RegisterProduct,
     CustomerCheckout,
     CustomerOrders,
+    CustomerOrderDetails,
 };

@@ -31,7 +31,7 @@ const useCustomerOrderDetails = () => {
                 const sales = await getSalesFromCustomer(userId);
                 if (sales.error) return navigate("/customer/orders");
 
-                const sale = sales[orderId - 1];
+                const sale = sales.find((s) => s.id === Number(orderId));
                 if(!sale) return navigate("/customer/orders");
 
                 setOrder(sale);

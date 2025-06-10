@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/actions/cart";
-import getUserInfo from "../utils/getUserInfo";
-import getSalesFromCustomer from "../services/getSalesFromCustomer";
 import postSale from "../services/postSale";
 
 const API_BASE_URL = process.env.REACT_APP_API_URL;
@@ -19,7 +17,6 @@ const useConfirmOrder = () => {
     const [bodyInfo, setBodyInfo] = useState(INITIAL_BODY);
     const [disabledBtn, setDisabledBtn] = useState(true);
 
-    const userId = getUserInfo("id");
     const cartState = useSelector((state) => state.cart);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -31,14 +28,21 @@ const useConfirmOrder = () => {
             products: cartState.cart
         });
 
+        if (!sale) {
+            console.error("Erro: Resposta inesperada da API ao criar a venda");
+            return;
+        }
+
         socket.emit("statusUpdated");
         dispatch(clearCart());
 
-        const userOrders = await getSalesFromCustomer(userId);
-        const currentOrder = userOrders.findIndex((e) => e.id === sale.data.id);
+        const salesArray = Array.isArray(sale) ? sale : [sale];
 
-        // retornar página de pedidos feitos depois
-        return navigate(`/products`);
+        if (salesArray.length === 1) {
+            return navigate(`/customer/orders/${salesArray[0].id}`);
+        }
+
+        return navigate(`/customer/orders`);
     }
 
     const handleChange = (target) => {

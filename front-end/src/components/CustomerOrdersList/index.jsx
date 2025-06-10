@@ -18,7 +18,7 @@ const CustomerOrdersList = () => {
                 return (
                     <OrderCard 
                         key={ `order-${index}` }
-                        orderId={ index + 1 }
+                        orderId={ id }
                         id={ id }
                         status={ status }
                         totalPrice={ totalPrice }
