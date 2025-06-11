@@ -11,6 +11,7 @@ import useConfirmOrder from './useConfirmOrder';
 import useCustomerOrdersList from './useCustomerOrdersList';
 import useCustomerOrderDetails from './useCustomerOrderDetails';
 import useSellerOrdersList from './useSellerOrdersList';
+import useSellerOrderDetails from './useSellerOrderDetails';
 
 export {
   useLogin,
@@ -26,4 +27,5 @@ export {
   useCustomerOrdersList,
   useCustomerOrderDetails,
   useSellerOrdersList,
+  useSellerOrderDetails,
 };
