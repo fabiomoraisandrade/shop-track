@@ -10,6 +10,7 @@ import useCheckoutTable from "./useCheckoutTable";
 import useConfirmOrder from './useConfirmOrder';
 import useCustomerOrdersList from './useCustomerOrdersList';
 import useCustomerOrderDetails from './useCustomerOrderDetails';
+import useSellerOrdersList from './useSellerOrdersList';
 
 export {
   useLogin,
@@ -24,4 +25,5 @@ export {
   useConfirmOrder,
   useCustomerOrdersList,
   useCustomerOrderDetails,
+  useSellerOrdersList,
 };
