@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ProductContainer = styled.div`
   width: 40%;
@@ -92,7 +92,7 @@ export const ChangeQuantity = styled.div`
   }
 `;
 
-export const QauntityInput = styled.input`
+export const QuantityInput = styled.input`
   background-color: transparent;
   border: none;
   width: 33.3%;

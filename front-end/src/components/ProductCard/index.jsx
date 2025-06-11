@@ -2,7 +2,7 @@ import { PropTypes } from "prop-types";
 import { useCartQuantity } from "../../hooks";
 import { ProductContainer, ImageContainer,
   ProductImg, InfoContainer, Name, Price, Span,
-  ChangeQuantity, QauntityInput 
+  ChangeQuantity, QuantityInput
 } from './styles';
 
 const ProductCard = ({ product }) => {
@@ -35,7 +35,7 @@ const ProductCard = ({ product }) => {
                     >
                         -
                     </button>
-                    <QauntityInput 
+                    <QuantityInput 
                         type="number"
                         min="1"
                         max="1000"
