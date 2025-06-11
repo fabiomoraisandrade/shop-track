@@ -9,6 +9,7 @@ import CheckoutConfirm from './CheckoutConfirm';
 import CustomerOrdersList from './CustomerOrdersList';
 import CustomerOrderDetailsField from './CustomerOrderDetailsField';
 import SellerOrdersList from './SellerOrdersList';
+import SellerOrderDetailsField from './SellerOrderDetailsField';
 
 export {
   FormLogin,
@@ -22,4 +23,5 @@ export {
   CustomerOrdersList,
   CustomerOrderDetailsField,
   SellerOrdersList,
+  SellerOrderDetailsField,
 };
