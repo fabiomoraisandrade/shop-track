@@ -6,7 +6,7 @@ const getSalesFromCustomer = async (customerId) => {
 
     return result.data.filter((sale) => sale.userId === customerId);
   } catch (err) {
-    console.error(`Erro ao buscar vendas: ${err}`);
+    console.error(`Erro ao buscar vendas pelo comprador: ${err}`);
     return { error: err.response };
   }
 };

@@ -25,6 +25,13 @@ const CustomerHeader = () => {
             Meus pedidos
           </RedirectButton>
           <RedirectButton
+            data-testid="customer_products__element-navbar-link-sales"
+            type="button"
+            onClick={ () => navigate('/seller/orders') }
+          >
+            Minhas vendas
+          </RedirectButton>
+          <RedirectButton
             data-testid="register_products__element-navbar-link-orders"
             type="button"
             onClick={ () => navigate('/products/register') }
