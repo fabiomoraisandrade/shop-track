@@ -26,7 +26,7 @@ const createUserAdmService = async (newUser) => {
 
   const createdUser = await User.create({
     ...userWithoutPassword,
-    hashedPassword,
+    password: hashedPassword,
   });
 
   return createdUser;

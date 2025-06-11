@@ -3,6 +3,7 @@ import { Toaster } from 'sonner';
 import {
   LoginPage,
   Register,
+  AdmScreen,
   CustomerPage,
   RegisterProduct,
   CustomerCheckout,
@@ -18,6 +19,7 @@ const App = () => (
     <Routes>
       <Route exact path="/login" element={ <LoginPage /> } />
       <Route exact path="/register" element={ <Register /> } />
+      <Route exact path="/admin/manage" element={ <AdmScreen /> } />
       <Route exact path="/products" element={ <CustomerPage /> } />
       <Route exact path="/products/register" element={ <RegisterProduct /> } />
       <Route exact path="/customer/checkout" element={ <CustomerCheckout /> } />

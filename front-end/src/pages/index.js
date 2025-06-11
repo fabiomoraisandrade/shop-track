@@ -1,5 +1,6 @@
 import LoginPage from './LoginPage';
 import Register from './Register';
+import AdmScreen from './AdmScreen';
 import CustomerPage from './CustomerPage';
 import RegisterProduct from "./RegisterProduct";
 import CustomerCheckout from './CustomerCheckout';
@@ -11,6 +12,7 @@ import SellerOrderDetails from './SellerOrderDetails';
 export {
     LoginPage,
     Register,
+    AdmScreen,
     CustomerPage,
     RegisterProduct,
     CustomerCheckout,

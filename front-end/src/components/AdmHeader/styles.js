@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaStore } from 'react-icons/fa';
+import { FaUserShield } from 'react-icons/fa';
 
 export const Flex = styled.div`
   width: 100%;
@@ -9,23 +9,8 @@ export const Flex = styled.div`
   align-items: center;
   background-color: #0000;
   box-shadow: 2px 3px 10px gray;
-  flex-direction: column;
   @media(min-width: 768px) {
-    flex-direction: row;
     padding: 0 50px;
-  }
-`;
-
-export const IconLogo = styled(FaStore)`
-  width: 40px;
-  height: 40px;
-  margin: 10px 0;
-  color: #4B39FF;
-
-  @media(min-width: 768px) {
-    width: 50px;
-    height: 50px;
-    margin-right: 10%;
   }
 `;
 
@@ -47,6 +32,19 @@ export const NavList = styled.nav`
     }
 `;
 
+export const AdminIconLogo = styled(FaUserShield)`
+  width: 40px;
+  height: 40px;
+  margin: 10px 0;
+  color: #FF5733;
+
+  @media(min-width: 768px) {
+    width: 50px;
+    height: 50px;
+    margin-right: 10%;
+  }
+`;
+
 export const RedirectButton = styled.button`
   position: relative;
   border: none;
@@ -58,12 +56,11 @@ export const RedirectButton = styled.button`
   cursor: pointer;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease;
-
+  
   &:hover {
     margin-bottom: -1px;
     border-bottom: 1px solid black;
   }
-
   @media(min-width: 768px) {
     font-size: 15px;
   }

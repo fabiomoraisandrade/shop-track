@@ -22,7 +22,7 @@ const useCheckLogin = () => {
 
     const userInfo = getUserInfo();
 
-    if (userInfo.isAdmin) return navigate('/login');
+    if (userInfo.isAdmin) return navigate('/admin/manage');
 
     checkAuthorization(userInfo);
   }, [navigate]);
