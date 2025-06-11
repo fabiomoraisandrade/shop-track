@@ -8,6 +8,7 @@ import {
   CustomerCheckout,
   CustomerOrders,
   CustomerOrderDetails,
+  SellerOrders,
 } from './pages';
 import './App.css';
 
@@ -21,6 +22,7 @@ const App = () => (
       <Route exact path="/customer/checkout" element={ <CustomerCheckout /> } />
       <Route exact path="/customer/orders" element={ <CustomerOrders /> } />
       <Route exact path="/customer/orders/:id" element={ <CustomerOrderDetails /> } />
+      <Route exact path="/seller/orders" element={ <SellerOrders /> } />
       <Route exact path="/" element={ <Navigate to="/login" /> } />
     </Routes>
     <Toaster richColors position="top-center" />

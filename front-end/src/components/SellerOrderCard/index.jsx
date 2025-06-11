@@ -55,7 +55,7 @@ const SellerOrderCard = ({ orderId, status, date, totalPrice, address, id }) => 
     );
 };
 
-OrderCard.propTypes = {
+SellerOrderCard.propTypes = {
   orderId: number.isRequired,
   status: string.isRequired,
   date: string.isRequired,
