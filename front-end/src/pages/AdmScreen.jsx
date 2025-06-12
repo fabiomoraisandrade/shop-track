@@ -1,5 +1,5 @@
 import { useCheckLogin } from "../hooks";
-import { AdmHeader } from "../components";
+import { AdmHeader, AdmInputs } from "../components";
 import { MainTag } from "../global-styles/globalComponents";
 
 const AdmScreen = () => {
@@ -8,6 +8,7 @@ const AdmScreen = () => {
     return (
         <MainTag>
             <AdmHeader />
+            <AdmInputs />
         </MainTag>
     );
 }

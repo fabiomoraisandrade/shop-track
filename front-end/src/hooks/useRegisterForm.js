@@ -29,17 +29,17 @@ const useRegisterForm = () => {
     }
 
     const checkLogin = (registerInfo) => {
-    const { name, email, password } = registerInfo;
-    const minName = 3;
-    const minPass = 6;
-    const regex = /^[a-z0-9_.-]+@[a-z]+\.[a-z]{2,3}(?:\.[a-z]{2})?$/;
+        const { name, email, password } = registerInfo;
+        const maxName = 12;
+        const minPass = 6;
+        const regex = /^[a-z0-9_.-]+@[a-z]+\.[a-z]{2,3}(?:\.[a-z]{2})?$/;
 
-    if (!email || !regex.test(email)) return true;
-    if (!password || password.length < minPass) return true;
-    if (!name || name.length < minName) return true;
+        if (!email || !regex.test(email)) return true;
+        if (!password || password.length < minPass) return true;
+        if (!name || name.length < maxName) return true;
 
-    return false;
-}
+        return false;
+    }
 
     return { info, bool, handleChange, checkLogin, handleClick };
 }

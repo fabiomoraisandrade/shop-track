@@ -1,3 +1,4 @@
+import useAdmin from './useAdmin';
 import useLogin from './useLogin';
 import useRegisterButton from './useRegisterButton';
 import useRegisterForm from './useRegisterForm';
@@ -14,6 +15,7 @@ import useSellerOrdersList from './useSellerOrdersList';
 import useSellerOrderDetails from './useSellerOrderDetails';
 
 export {
+  useAdmin,
   useLogin,
   useRegisterButton,
   useRegisterForm,
