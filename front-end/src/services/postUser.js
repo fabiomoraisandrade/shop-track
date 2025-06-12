@@ -1,13 +1,8 @@
 import api from './API';
 
-const postUser = async (name, email, password) => {
+const postUser = async (userBody) => {
     try {
-        const response = await api.post("/api/v1/users", {
-            name,
-            email,
-            password,
-            isAdmin: false
-        });
+        const response = await api.post("/api/v1/users", userBody);
 
         return response.data;
     } catch (err) {

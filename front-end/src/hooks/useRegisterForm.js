@@ -18,8 +18,14 @@ const useRegisterForm = () => {
 
     const handleClick = async (registerInfo) => {
         const { name, email, password } = registerInfo;
+        const userBody = {
+            name: name,
+            email: email,
+            password: password,
+            isAdmin: false
+        }
 
-        const response = await postUser(name, email, password);
+        const response = await postUser(userBody);
         if (!response.token) return setBool(false);
 
         const userInfo = JSON.stringify(response);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import postUserAdmin from "../services/postUserAdmin";
+import postUser from "../services/postUser";
 import { addNewUser } from "../redux/actions/users";
 
 const useAdmin = () => {
@@ -9,7 +9,7 @@ const useAdmin = () => {
         name: "",
         email: "",
         password: "",
-        isAdmin: true
+        isAdmin: false
     });
     const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const useAdmin = () => {
     };
 
     const submitUser = async (admInfo) => {
-        const result = await postUserAdmin(admInfo);
+        const result = await postUser(admInfo);
         if (!result) return setBool(false);
         if (!result.id) return setBool(false);
         
@@ -30,7 +30,7 @@ const useAdmin = () => {
             name: "",
             email: "",
             password: "",
-            isAdmin: true
+            isAdmin: false
         });
 
         dispatch(addNewUser(result));
