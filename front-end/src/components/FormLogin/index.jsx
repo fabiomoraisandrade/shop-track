@@ -3,14 +3,14 @@ import { FaSignInAlt, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useLogin } from '../../hooks';
 import checkForm from '../../utils';
 import { 
-  Button, Section, Input, Label, Main, H1, P,
+  Button, Section, Input, Label, Main, H1,
   ButtonsContainer, Typography, PasswordInputContainer, TogglePasswordButton
 } from './style';
 import RegisterButton from '../RegisterButton';
 
 const FormLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { handleChange, email, password, userLogin, bool, generateCopyright } = useLogin();
+  const { handleChange, email, password, userLogin, generateCopyright } = useLogin();
 
   return (
     <Main>
@@ -60,12 +60,12 @@ const FormLogin = () => {
             LOGIN
           </Button>
           <RegisterButton />
-          <P 
+          {/* <P 
             data-testid="common_login__element-invalid-email"
             hidden={ bool }
           >
             Email ou senha inválido
-          </P>
+          </P> */}
         </ButtonsContainer>
 
         <Typography>{generateCopyright()}</Typography>

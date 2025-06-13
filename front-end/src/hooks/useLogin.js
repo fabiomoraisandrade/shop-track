@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { toast } from "sonner";
 import Typography from '@mui/material/Typography';
 import postLogin from '../services/postLogin';
 import getUserInfo from '../utils/getUserInfo';
@@ -44,17 +45,33 @@ const useLogin = () => {
     }
 
     const userLogin = async (emailUser, passwordUser) => {
-        const result = await postLogin(emailUser, passwordUser);
-        if (!result.token) return setBool(false);
+        try {
+            const result = await postLogin(emailUser, passwordUser);
 
-        const userInfo = JSON.stringify(result);
-        localStorage.setItem("user", userInfo);
+            if (!result.token) {
+                toast.error("Usuário ou senha inválido.");
+                return setBool(false);
+            }
 
-        if (result.isAdmin) {
-            return navigate("/admin/manage");
+            localStorage.setItem("user", JSON.stringify(result));
+
+            if (result.isAdmin) {
+                return navigate("/admin/manage");
+            }
+
+            return navigate("/products");
+        } catch (err) {
+            const apiErrorMessage = err.response?.data?.message;
+
+            if (err?.status === 401) {
+                toast.error(apiErrorMessage || "Email ou senha inválido!");
+            } else {
+                toast.error("Erro ao tentar fazer login. Tente novamente mais tarde.");
+            }
+
+            console.error("Erro no login:", err);
+            setBool(false);
         }
-
-        return navigate("/products");
     };
 
     return { handleChange, email, password, userLogin, bool, generateCopyright };
