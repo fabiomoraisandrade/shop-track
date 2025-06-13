@@ -4,13 +4,14 @@ const socket = require("socket.io");
 const socketListener = require("../socket");
 const app = require("./app");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
+const SOCKET_CLIENT_ORIGIN = process.env.SOCKET_CLIENT_ORIGIN
 
 const server = http.createServer(app);
 
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: SOCKET_CLIENT_ORIGIN,
     methods: ["GET", "POST"],
   },
 });
