@@ -20,8 +20,8 @@ const useLogin = () => {
             style={ { fontSize: '12px' } }
         >
             {"Copyright ©"}
-            <Link to="/" color="inherit" href="https://mui.com/material-ui/" style={ { fontSize: "14px" } } >
-                Fast Delivery
+            <Link to="https://github.com/fabiomoraisandrade/shop-track" color="inherit" href="https://mui.com/material-ui/" style={ { fontSize: "14px" } } >
+                Shop Track
             </Link>
             {" "}
             {new Date().getFullYear()}
@@ -62,8 +62,9 @@ const useLogin = () => {
             return navigate("/products");
         } catch (err) {
             const apiErrorMessage = err.response?.data?.message;
+            const status = err.response?.status;
 
-            if (err?.status === 401) {
+            if (status === 401) {
                 toast.error(apiErrorMessage || "Email ou senha inválido!");
             } else {
                 toast.error("Erro ao tentar fazer login. Tente novamente mais tarde.");

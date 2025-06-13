@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash, FaArrowLeft } from "react-icons/fa";
 import useRegisterForm from "../../hooks/useRegisterForm";
 import {
-  Main, Section, H1, Input, Label, BtnRegister, P,
+  Main, Section, H1, Input, Label, BtnRegister,
   PasswordContainer, TogglePasswordButton, HeaderContainer, BackButton
 } from "./style";
 
 const RegisterForm = () => {
-    const { info, bool, handleChange, checkLogin, handleClick } = useRegisterForm();
+    const { info, handleChange, checkLogin, handleClick } = useRegisterForm();
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
@@ -77,12 +77,6 @@ const RegisterForm = () => {
                 >
                     CADASTRAR
                 </BtnRegister>
-                <P
-                    data-testid="common_register__element-invalid_register"
-                    hidden={ bool }
-                >
-                    Nome ou Email já cadastrado
-                </P>
             </Section>
         </Main>
     );
