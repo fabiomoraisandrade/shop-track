@@ -12,6 +12,7 @@ import SellerOrdersList from './SellerOrdersList';
 import SellerOrderDetailsField from './SellerOrderDetailsField';
 import AdmHeader from './AdmHeader';
 import AdmInputs from './AdmInputs';
+import AdmTable from './AdmTable';
 
 export {
   FormLogin,
@@ -28,4 +29,5 @@ export {
   SellerOrderDetailsField,
   AdmHeader,
   AdmInputs,
+  AdmTable,
 };

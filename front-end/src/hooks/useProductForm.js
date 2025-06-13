@@ -10,13 +10,10 @@ const useProductForm = () => {
 
   const handleChange = ({ name, value, files }) => {
     if (name === "price") {
-      // Remove qualquer caractere que não seja número
       const onlyNumbers = value.replace(/\D/g, "");
 
-      // Converte para centavos e formata para reais (R$)
       const numericValue = (Number(onlyNumbers) / 100).toFixed(2);
 
-      // Atualiza o estado com valor formatado (usando vírgula)
       setInfo((prev) => ({ ...prev, [name]: numericValue.replace(".", ",") }));
       return;
     }

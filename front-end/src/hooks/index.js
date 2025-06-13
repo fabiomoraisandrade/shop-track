@@ -13,6 +13,7 @@ import useCustomerOrdersList from './useCustomerOrdersList';
 import useCustomerOrderDetails from './useCustomerOrderDetails';
 import useSellerOrdersList from './useSellerOrdersList';
 import useSellerOrderDetails from './useSellerOrderDetails';
+import useManageUsers from './useManageUsers';
 
 export {
   useAdmin,
@@ -30,4 +31,5 @@ export {
   useCustomerOrderDetails,
   useSellerOrdersList,
   useSellerOrderDetails,
+  useManageUsers,
 };

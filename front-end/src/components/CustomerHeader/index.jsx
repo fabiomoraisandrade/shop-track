@@ -41,7 +41,7 @@ const CustomerHeader = () => {
           <RedirectButton
             data-testid="customer_products__element-navbar-user-full-name"
             type="button"
-            onClick={ () => navigate('/customer/products') }
+            onClick={ () => navigate('/products') }
           >
             { user }
           </RedirectButton>
