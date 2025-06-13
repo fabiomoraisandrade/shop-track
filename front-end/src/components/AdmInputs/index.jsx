@@ -1,9 +1,9 @@
 import { useAdmin } from "../../hooks";
-import { H1, P } from "../FormLogin/style";
+import { H1 } from "../FormLogin/style";
 import { AdmSection, Form, Input, Button, Label } from "./styles";
 
 const AdmInputs = () => {
-    const { handleChange, checkAdmin, submitUser, info, bool } = useAdmin();
+    const { handleChange, checkAdmin, submitUser, info } = useAdmin();
 
     return (
         <AdmSection>
@@ -64,7 +64,6 @@ const AdmInputs = () => {
                 >
                     Cadastrar
                 </Button>
-                <P data-testid="admin_manage__element-invalid-register" hidden={ bool }>Email já cadastrado</P>
             </Form>
         </AdmSection>
     );

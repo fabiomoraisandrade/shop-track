@@ -1,5 +1,6 @@
 import { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
 import getUsers from "../services/getUsers";
 import deleteUser from "../services/deleteUser";
 import { reformUserState } from "../redux/actions/users";
@@ -16,8 +17,14 @@ const useManageUsers = () => {
     }, [dispatch]);
 
     const deleteUserById = async (id) => {
-        await deleteUser(id);
-        getAllUsers();
+        try {
+            await deleteUser(id);
+            getAllUsers();
+        } catch (err) {
+            const apiErrorMessage = err.response?.data?.message;
+            toast.error(`Erro ao deletar usuário: ${apiErrorMessage}`);
+            console.error(`Erro ao deletar usuário: ${err}`);
+        }
     };
 
     useEffect(() => {

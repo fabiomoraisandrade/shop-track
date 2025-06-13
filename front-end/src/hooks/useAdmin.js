@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 import postUser from "../services/postUser";
 import { addNewUser } from "../redux/actions/users";
 
@@ -22,20 +23,38 @@ const useAdmin = () => {
     };
 
     const submitUser = async (admInfo) => {
-        const result = await postUser(admInfo);
-        if (!result) return setBool(false);
-        if (!result.id) return setBool(false);
-        
-        setInfo({
-            name: "",
-            email: "",
-            password: "",
-            isAdmin: false
-        });
+        try {
+            const result = await postUser(admInfo);
+            if (!result) return setBool(false);
+            if (!result.id) return setBool(false);
+            
+            setInfo({
+                name: "",
+                email: "",
+                password: "",
+                isAdmin: false
+            });
 
-        dispatch(addNewUser(result));
+            dispatch(addNewUser(result));
 
-        return setBool(true);
+            return setBool(true);
+        } catch (err) {
+            const status = err.response?.status;
+            const apiErrorMessage = err.response?.data?.message;
+
+            if (status === 400) {
+                toast.error(apiErrorMessage || "Dados inválidos. Verifique e tente novamente.");
+            } else if (status === 409) {
+                toast.error("Email já cadastrado!");
+            } else if (status === 500) {
+                toast.error("Erro no servidor. Tente novamente mais tarde.");
+            } else {
+                toast.error("Erro ao tentar fazer cadastro. Tente novamente mais tarde.");
+            }
+
+            console.error("Erro no cadastro:", err);
+            setBool(false);
+        }
     };
 
     const checkAdmin = (admInfo) => {
