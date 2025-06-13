@@ -2,6 +2,7 @@ import io from "socket.io-client";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import { clearCart } from "../redux/actions/cart";
 import postSale from "../services/postSale";
 
@@ -22,28 +23,46 @@ const useConfirmOrder = () => {
     const navigate = useNavigate();
 
     const submitSale = async () => {
-        const sale = await postSale({
-            ...bodyInfo,
-            status: "Pendente",
-            products: cartState.cart
-        });
+        try {
+            const sale = await postSale({
+                ...bodyInfo,
+                status: "Pendente",
+                products: cartState.cart
+            });
 
-        if (!sale) {
-            console.error("Erro: Resposta inesperada da API ao criar a venda");
-            return;
+            if (!sale) {
+                toast.error("Erro inesperado ao criar a venda.");
+                console.error("Erro: Resposta inesperada da API ao criar a venda");
+                return;
+            }
+
+            socket.emit("statusUpdated");
+            dispatch(clearCart());
+
+            const salesArray = Array.isArray(sale) ? sale : [sale];
+
+            if (salesArray.length === 1) {
+                return navigate(`/customer/orders/${salesArray[0].id}`);
+            }
+
+            return navigate(`/customer/orders`);
+        } catch (err) {
+            const status = err.response?.status;
+            const apiErrorMessage = err.response?.data?.message;
+
+            if (status === 400) {
+                toast.error(apiErrorMessage || "Dados inválidos para concluir a venda.");
+            } else if (status === 404) {
+                toast.error(apiErrorMessage || "Produto(s) não encontrado(s). Verifique seu carrinho.");
+            } else if (status === 500) {
+                toast.error(apiErrorMessage || "Erro interno do servidor. Tente novamente mais tarde.");
+            } else {
+                toast.error("Erro ao realizar a venda. Verifique sua conexão e tente novamente.");
+            }
+
+            console.error("Erro ao criar venda:", err);
         }
-
-        socket.emit("statusUpdated");
-        dispatch(clearCart());
-
-        const salesArray = Array.isArray(sale) ? sale : [sale];
-
-        if (salesArray.length === 1) {
-            return navigate(`/customer/orders/${salesArray[0].id}`);
-        }
-
-        return navigate(`/customer/orders`);
-    }
+    };
 
     const handleChange = (target) => {
         setBodyInfo((prevState) => ({ ...prevState, [target.name]: target.value }));
