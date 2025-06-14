@@ -1,6 +1,5 @@
 // User
 const CreateUserService = require("./users/CreateUserService");
-const CreateUserAdmService = require("./users/CreateUserAdmService");
 const GetAllUsersService = require("./users/GetAllUsersService");
 const GetUserByIdService = require("./users/GetUserByIdService");
 const UpdateUserService = require("./users/UpdateUserService");
@@ -24,7 +23,6 @@ const DeleteSaleService = require("./sales/DeleteSaleService");
 
 module.exports = {
   CreateUserService,
-  CreateUserAdmService,
   GetAllUsersService,
   GetUserByIdService,
   UpdateUserService,

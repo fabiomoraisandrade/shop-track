@@ -1,6 +1,5 @@
 // User
 const CreateUserController = require("./users/CreateUserController");
-const CreateUserAdmController = require("./users/CreateUserAdmController");
 const GetAllUsersController = require("./users/GetAllUsersController");
 const GetUserByIdController = require("./users/GetUserByIdController");
 const UpdateUserController = require("./users/UpdateUserController");
@@ -23,7 +22,6 @@ const DeleteSaleController = require("./sales/DeleteSaleController");
 
 module.exports = {
   CreateUserController,
-  CreateUserAdmController,
   GetAllUsersController,
   GetUserByIdController,
   UpdateUserController,

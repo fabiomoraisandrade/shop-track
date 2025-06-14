@@ -3,7 +3,6 @@ const rescue = require("express-rescue");
 const authorizeToken = require("../../middlewares/authorizeToken");
 const {
   CreateUserController,
-  CreateUserAdmController,
   GetAllUsersController,
   GetUserByIdController,
   UpdateUserController,
@@ -11,11 +10,6 @@ const {
 } = require("../../controllers/v1");
 
 usersRouter.post("/", rescue(CreateUserController));
-usersRouter.post(
-  "/admin",
-  rescue(authorizeToken),
-  rescue(CreateUserAdmController),
-);
 usersRouter.get("/", rescue(authorizeToken), rescue(GetAllUsersController));
 usersRouter.get("/:id", rescue(authorizeToken), rescue(GetUserByIdController));
 usersRouter.put("/:id", rescue(authorizeToken), rescue(UpdateUserController));
