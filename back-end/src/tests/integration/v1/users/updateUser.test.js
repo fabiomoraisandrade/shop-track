@@ -11,7 +11,7 @@ describe("Testa PUT /api/v1/users/:id", () => {
     name: "John Wick da Silva",
     email: "jhonwicksilva@continental.com",
     password: "parabellum",
-    role: "seller",
+    isAdmin: false,
   };
 
   beforeAll(async () => {
@@ -27,7 +27,7 @@ describe("Testa PUT /api/v1/users/:id", () => {
         name: "John Doe Foo Bar",
         email: "newemailtest@email.com",
         password: "abcdefgh",
-        role: "customer",
+        isAdmin: true,
       })
       .set("Authorization", `Bearer ${token}`);
 
@@ -59,7 +59,7 @@ describe("Testa PUT /api/v1/users/:id", () => {
   it("Usuário atualizado tem os novos dados (exceto senha)", () => {
     expect(getUser.name).toBe(newUser.name);
     expect(getUser.email).toBe(newUser.email);
-    expect(getUser.role).toBe(newUser.role);
+    expect(getUser.isAdmin).toBe(newUser.isAdmin);
     expect(getUser).not.toHaveProperty("password");
   });
 });
