@@ -4,6 +4,7 @@ const app = require("../../../../api/app");
 
 describe("Testa GET /api/v1/products", () => {
   let token;
+  let createdSellerUserId;
   let productId;
   let response;
   const imagePath = path.resolve(__dirname, "../../../files/test-image.jpg");
@@ -15,11 +16,24 @@ describe("Testa GET /api/v1/products", () => {
 
     token = loginResponse.body.token;
 
+    const createSellerUserResponse = await request(app)
+      .post("/api/v1/users")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        name: "Usuário Teste",
+        email: "usuario.teste@getid.com",
+        password: "teste123",
+        isAdmin: false,
+    });
+
+    createdSellerUserId = createSellerUserResponse.body.id;
+
     const createProductResponse = await request(app)
       .post("/api/v1/products")
       .set("Authorization", `Bearer ${token}`)
       .field("name", "Weissbier 1l teste")
       .field("price", "23.70")
+      .field("sellerId", createdSellerUserId)
       .attach("file", imagePath);
 
     productId = createProductResponse.body.id;
@@ -29,6 +43,12 @@ describe("Testa GET /api/v1/products", () => {
     if (productId) {
       await request(app)
         .delete(`/api/v1/products/${productId}`)
+        .set("Authorization", `Bearer ${token}`);
+    }
+
+    if (createdSellerUserId) {
+      await request(app)
+        .delete(`/api/v1/users/${createdSellerUserId}`)
         .set("Authorization", `Bearer ${token}`);
     }
   });
@@ -53,6 +73,7 @@ describe("Testa GET /api/v1/products", () => {
       expect(response.body[0]).toHaveProperty("name");
       expect(response.body[0]).toHaveProperty("price");
       expect(response.body[0]).toHaveProperty("urlImage");
+      expect(response.body[0]).toHaveProperty("sellerId");
     });
   });
 
@@ -76,6 +97,7 @@ describe("Testa GET /api/v1/products", () => {
       expect(response.body[0]).toHaveProperty("name");
       expect(response.body[0]).toHaveProperty("price");
       expect(response.body[0]).toHaveProperty("urlImage");
+      expect(response.body[0]).toHaveProperty("sellerId");
     });
   });
 });
