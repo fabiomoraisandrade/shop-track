@@ -31,8 +31,8 @@ describe("Testa POST /api/v1/login", () => {
       expect(response.body).toHaveProperty("name");
     });
 
-    it("objeto possui role", () => {
-      expect(response.body).toHaveProperty("role");
+    it("objeto possui isAdmin", () => {
+      expect(response.body).toHaveProperty("isAdmin");
     });
   });
 
