@@ -19,7 +19,7 @@ describe("Testa DELETE /api/v1/users/:id", () => {
         name: "John Doe Foo Bar",
         email: "emailteste007@email.com",
         password: "32165487",
-        role: "customer",
+        isAdmin: false,
       });
 
       userId = createUserResponse.body.id;
