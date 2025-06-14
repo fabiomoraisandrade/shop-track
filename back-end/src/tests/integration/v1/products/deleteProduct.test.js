@@ -5,6 +5,7 @@ const app = require("../../../../api/app");
 describe("Testa DELETE /api/v1/products/:id", () => {
   describe("Quando a deleção do produto é bem-sucedida", () => {
     let token;
+    let createdSellerUserId;
     let productId;
     let deleteResponse;
     let fetchDeletedProductResponse;
@@ -17,11 +18,24 @@ describe("Testa DELETE /api/v1/products/:id", () => {
 
       token = loginResponse.body.token;
 
+      const createSellerUserResponse = await request(app)
+        .post("/api/v1/users")
+        .set("Authorization", `Bearer ${token}`)
+        .send({
+          name: "Usuário Teste",
+          email: "usuario.teste@getid.com",
+          password: "teste123",
+          isAdmin: false,
+      });
+
+      createdSellerUserId = createSellerUserResponse.body.id;
+
       const createProductResponse = await request(app)
         .post("/api/v1/products")
         .set("Authorization", `Bearer ${token}`)
         .field("name", "Weissbier 1l")
         .field("price", "23.70")
+        .field("sellerId", createdSellerUserId)
         .attach("file", imagePath);
 
       productId = createProductResponse.body.id;
@@ -33,6 +47,14 @@ describe("Testa DELETE /api/v1/products/:id", () => {
       fetchDeletedProductResponse = await request(app)
         .get(`/api/v1/products/${productId}`)
         .set("Authorization", `Bearer ${token}`);
+    });
+
+    afterAll(async () => {
+      if (createdSellerUserId) {
+        await request(app)
+          .delete(`/api/v1/users/${createdSellerUserId}`)
+          .set("Authorization", `Bearer ${token}`);
+      }
     });
 
     it("Retorna status 204 - No Content", () => {
