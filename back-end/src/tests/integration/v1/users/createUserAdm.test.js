@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../../../../api/app");
 
-describe("Testa POST /api/v1/users - Criação de usuário Admin", () => {
+describe("Testa POST /api/v1/users/admin - Criação de usuário Admin", () => {
   let token;
 
   beforeAll(async () => {
@@ -16,10 +16,10 @@ describe("Testa POST /api/v1/users - Criação de usuário Admin", () => {
     let response;
 
     beforeAll(async () => {
-      response = await request(app).post("/api/v1/users").send({
+      response = await request(app).post("/api/v1/users/admin").send({
         email: "emailteste007@email.com",
         password: "244466666",
-        role: "administrator",
+        isAdmin: true,
       });
     });
 
@@ -36,10 +36,10 @@ describe("Testa POST /api/v1/users - Criação de usuário Admin", () => {
     let response;
 
     beforeAll(async () => {
-      response = await request(app).post("/api/v1/users").send({
+      response = await request(app).post("/api/v1/users/admin").send({
         name: "Admin John Doe Foo Bar",
         password: "244466666",
-        role: "administrator",
+        isAdmin: true,
       });
     });
 
@@ -56,10 +56,10 @@ describe("Testa POST /api/v1/users - Criação de usuário Admin", () => {
     let response;
 
     beforeAll(async () => {
-      response = await request(app).post("/api/v1/users").send({
+      response = await request(app).post("/api/v1/users/admin").send({
         name: "Admin John Doe Foo Bar",
         email: "emailteste007@email.com",
-        role: "administrator",
+        isAdmin: true,
       });
     });
 
@@ -76,11 +76,11 @@ describe("Testa POST /api/v1/users - Criação de usuário Admin", () => {
     let response;
 
     beforeAll(async () => {
-      response = await request(app).post("/api/v1/users").send({
+      response = await request(app).post("/api/v1/users/admin").send({
         name: "Admin John Doe Foo Bar",
         email: "adm@deliveryapp.com",
         password: "123456",
-        role: "administrator",
+        isAdmin: true,
       });
     });
 
@@ -98,11 +98,11 @@ describe("Testa POST /api/v1/users - Criação de usuário Admin", () => {
     let userId;
 
     beforeAll(async () => {
-      response = await request(app).post("/api/v1/users").send({
+      response = await request(app).post("/api/v1/users/admin").send({
         name: "Admin John Doe Foo Bar",
         email: "emailteste007@email.com",
         password: "244466666",
-        role: "administrator",
+        isAdmin: true,
       });
 
       userId = response.body.id;
