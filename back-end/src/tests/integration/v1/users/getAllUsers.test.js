@@ -20,7 +20,7 @@ describe("Testa GET /api/v1/users", () => {
         name: "Usuário Teste",
         email: "usuario.teste@getid.com",
         password: "teste123",
-        role: "customer",
+        isAdmin: false,
       });
 
     userId = createUserResponse.body.id;
@@ -53,7 +53,7 @@ describe("Testa GET /api/v1/users", () => {
       expect(response.body[0]).toHaveProperty("id");
       expect(response.body[0]).toHaveProperty("name");
       expect(response.body[0]).toHaveProperty("email");
-      expect(response.body[0]).toHaveProperty("role");
+      expect(response.body[0]).toHaveProperty("isAdmin");
     });
 
     it("Verifica inexistência de password", () => {
