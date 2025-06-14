@@ -24,7 +24,7 @@ describe("Testa GET /api/v1/users/:id", () => {
           name: "Usuário Teste",
           email: "usuario.teste@getid.com",
           password: "teste123",
-          role: "customer",
+          isAdmin: false,
         });
 
       userId = createUserResponse.body.id;
@@ -42,7 +42,7 @@ describe("Testa GET /api/v1/users/:id", () => {
       expect(response.body).toHaveProperty("id", userId);
       expect(response.body).toHaveProperty("name", "Usuário Teste");
       expect(response.body).toHaveProperty("email", "usuario.teste@getid.com");
-      expect(response.body).toHaveProperty("role", "customer");
+      expect(response.body).toHaveProperty("isAdmin", false);
     });
 
     it("Não retorna o campo password", () => {
