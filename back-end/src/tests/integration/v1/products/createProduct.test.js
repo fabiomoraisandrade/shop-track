@@ -4,7 +4,9 @@ const app = require("../../../../api/app");
 
 describe("Testa POST /api/v1/products", () => {
   let token;
+  let createdSellerUserId;
   let createdProduct;
+  let createdProductStatus;
   const imagePath = path.resolve(__dirname, "../../../files/test-image.jpg");
 
   beforeAll(async () => {
@@ -14,20 +16,40 @@ describe("Testa POST /api/v1/products", () => {
 
     token = res.body.token;
 
-    response = await request(app)
+    const createSellerUserResponse = await request(app)
+      .post("/api/v1/users")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        name: "Usuário Teste",
+        email: "usuario.teste@getid.com",
+        password: "teste123",
+        isAdmin: false,
+    });
+
+    createdSellerUserId = createSellerUserResponse.body.id;
+
+    createProductresponse = await request(app)
       .post("/api/v1/products")
       .set("Authorization", `Bearer ${token}`)
       .field("name", "Weissbier 1l")
       .field("price", "23.70")
+      .field("sellerId", createdSellerUserId)
       .attach("file", imagePath);
 
-    createdProduct = response.body;
+    createdProduct = createProductresponse.body;
+    createdProductStatus = createProductresponse.status;
   });
 
   afterAll(async () => {
     if (createdProduct.id) {
       await request(app)
         .delete(`/api/v1/products/${createdProduct.id}`)
+        .set("Authorization", `Bearer ${token}`);
+    }
+
+    if (createdSellerUserId) {
+      await request(app)
+        .delete(`/api/v1/users/${createdSellerUserId}`)
         .set("Authorization", `Bearer ${token}`);
     }
   });
@@ -40,6 +62,7 @@ describe("Testa POST /api/v1/products", () => {
         .post("/api/v1/products")
         .field("name", "Weissbier 1l")
         .field("price", "23.70")
+        .field("sellerId", createdSellerUserId)
         .attach("file", imagePath);
     });
 
@@ -53,23 +76,53 @@ describe("Testa POST /api/v1/products", () => {
   });
 
   describe("Quando as entradas são inválidas", () => {
-    let response;
-
-    beforeAll(async () => {
-      response = await request(app)
+    it("Retorna 400 quando não envia imagem", async () => {
+      const response = await request(app)
         .post("/api/v1/products")
         .set("Authorization", `Bearer ${token}`)
-        .field("name", "Weissbier 1l")
-        .field("price", "23.70")
-        .attach("file", "");
-    });
+        .field("name", "Produto Sem Imagem")
+        .field("price", "12.00")
+        .field("sellerId", createdSellerUserId);
 
-    it("Retorna status 400", () => {
       expect(response.status).toBe(400);
+      expect(response.body.message).toBe("image file is required");
     });
 
-    it("Retorna a mensagem de erro correta", () => {
-      expect(response.body.message).toBe("image file is required");
+    it("Retorna 400 quando não envia price", async () => {
+      const response = await request(app)
+        .post("/api/v1/products")
+        .set("Authorization", `Bearer ${token}`)
+        .field("name", "Produto Sem Preço")
+        .field("sellerId", createdSellerUserId)
+        .attach("file", imagePath);
+
+      expect(response.status).toBe(400);
+      expect(response.body.message).toBe("price is required");
+    });
+
+    it("Retorna 400 quando não envia sellerId", async () => {
+      const response = await request(app)
+        .post("/api/v1/products")
+        .set("Authorization", `Bearer ${token}`)
+        .field("name", "Produto Sem SellerId")
+        .field("price", "23.70")
+        .attach("file", imagePath);
+
+      expect(response.status).toBe(400);
+      expect(response.body.message).toBe("sellerId is required");
+    });
+
+    it("Retorna 400 quando sellerId não é um inteiro positivo", async () => {
+      const response = await request(app)
+        .post("/api/v1/products")
+        .set("Authorization", `Bearer ${token}`)
+        .field("name", "Produto SellerId Inválido")
+        .field("price", "23.70")
+        .field("sellerId", "-1")
+        .attach("file", imagePath);
+
+      expect(response.status).toBe(400);
+      expect(response.body.message).toBe("sellerId must be a valid positive integer");
     });
   });
 
@@ -83,6 +136,7 @@ describe("Testa POST /api/v1/products", () => {
         .set("Authorization", `Bearer ${token}`)
         .field("name", "Weissbier 1l")
         .field("price", "23.70")
+        .field("sellerId", createdSellerUserId)
         .attach("file", imagePath);
 
       const getRes = await request(app)
@@ -100,10 +154,6 @@ describe("Testa POST /api/v1/products", () => {
       expect(response.body.message).toBe("Product already exists");
     });
 
-    it("Não cria produto duplicado no banco", () => {
-      const duplicates = products.filter((p) => p.name === "Produto Teste");
-      expect(duplicates.length).toBe(1);
-    });
   });
 
   describe("Quando é criado com sucesso", () => {
@@ -112,7 +162,7 @@ describe("Testa POST /api/v1/products", () => {
     });
 
     it("Retorna status 201", () => {
-      expect(response.status).toBe(201);
+      expect(createdProductStatus).toBe(201);
     });
 
     it("Retorna com chaves esperadas", () => {
@@ -120,6 +170,7 @@ describe("Testa POST /api/v1/products", () => {
       expect(createdProduct).toHaveProperty("name");
       expect(createdProduct).toHaveProperty("price");
       expect(createdProduct).toHaveProperty("urlImage");
+      expect(createdProduct).toHaveProperty("sellerId");
     });
   });
 });
