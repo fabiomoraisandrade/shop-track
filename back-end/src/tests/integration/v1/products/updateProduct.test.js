@@ -7,13 +7,9 @@ describe("Testa PUT /api/v1/products/:id", () => {
   let getProduct;
   let createdProductId;
   let token;
+  let createdSellerUserId;
+  let newProduct;
   const imagePath = path.resolve(__dirname, "../../../files/test-image.jpg");
-
-  const newProduct = {
-    name: "Teste Produto",
-    price: 7.69,
-    urlImage: "http://localhost:3001/images/image-teste.jpg",
-  };
 
   beforeAll(async () => {
     const loginResponse = await request(app)
@@ -22,14 +18,35 @@ describe("Testa PUT /api/v1/products/:id", () => {
 
     token = loginResponse.body.token;
 
+    const createSellerUserResponse = await request(app)
+      .post("/api/v1/users")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        name: "Usuário Teste",
+        email: "usuario.teste@getid.com",
+        password: "teste123",
+        isAdmin: false,
+    });
+
+    createdSellerUserId = createSellerUserResponse.body.id;
+
     const createdResponse = await request(app)
       .post("/api/v1/products")
       .set("Authorization", `Bearer ${token}`)
       .field("name", "Produto SuperTeste")
       .field("price", "23.70")
+      .field("sellerId", createdSellerUserId)
       .attach("file", imagePath);
 
     createdProductId = createdResponse.body.id;
+
+    newProduct = {
+      name: "Teste Produto",
+      price: 7.69,
+      urlImage: "http://localhost:3001/images/image-teste.jpg",
+      sellerId: createdSellerUserId,
+    };
+    console.log(`newProdutToUpdate: ${JSON.stringify(newProduct, null, 2)}`);
 
     response = await request(app)
       .put(`/api/v1/products/${createdProductId}`)
@@ -44,9 +61,17 @@ describe("Testa PUT /api/v1/products/:id", () => {
   });
 
   afterAll(async () => {
-    await request(app)
-      .delete(`/api/v1/products/${createdProductId}`)
-      .set("Authorization", `Bearer ${token}`);
+    if (createdProductId) {
+        await request(app)
+          .delete(`/api/v1/products/${createdProductId}`)
+          .set("Authorization", `Bearer ${token}`);
+      }
+
+      if (createdSellerUserId) {
+        await request(app)
+          .delete(`/api/v1/users/${createdSellerUserId}`)
+          .set("Authorization", `Bearer ${token}`);
+      }
   });
 
   it("Atualiza produto no banco e volta com status 204", () => {
