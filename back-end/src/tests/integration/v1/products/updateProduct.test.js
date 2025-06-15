@@ -46,8 +46,7 @@ describe("Testa PUT /api/v1/products/:id", () => {
       urlImage: "http://localhost:3001/images/image-teste.jpg",
       sellerId: createdSellerUserId,
     };
-    console.log(`newProdutToUpdate: ${JSON.stringify(newProduct, null, 2)}`);
-
+    
     response = await request(app)
       .put(`/api/v1/products/${createdProductId}`)
       .send(newProduct)
