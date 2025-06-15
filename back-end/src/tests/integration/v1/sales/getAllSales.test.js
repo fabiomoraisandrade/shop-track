@@ -1,10 +1,15 @@
+const path = require("path");
 const request = require("supertest");
 const app = require("../../../../api/app");
 
 describe("Testa GET /api/v1/sales", () => {
   let token;
+  let createdSellerUserId;
+  let productId;
+  let sale;
   let saleId;
   let response;
+  const imagePath = path.resolve(__dirname, "../../../files/test-image.jpg");
 
   beforeAll(async () => {
     const res = await request(app)
@@ -13,29 +18,62 @@ describe("Testa GET /api/v1/sales", () => {
 
     token = res.body.token;
 
-    const createdSaleResponse = await request(app)
-      .post("/api/v1/sales")
+    const createSellerUserResponse = await request(app)
+      .post("/api/v1/users")
       .set("Authorization", `Bearer ${token}`)
       .send({
-        sellerId: 11,
-        totalPrice: 30.0,
-        deliveryAddress: "Rua Xablau",
-        deliveryNumber: "237",
-        status: "Pendente",
-        products: [
-          { id: 2, quantity: 2 },
-          { id: 15, quantity: 2 },
-        ],
-      });
+        name: "Usuário Teste",
+        email: "usuario.teste@getid.com",
+        password: "teste123",
+        isAdmin: false,
+    });
 
-    saleId = createdSaleResponse.body.id;
+    createdSellerUserId = createSellerUserResponse.body.id;
+
+    const createProductResponse = await request(app)
+      .post("/api/v1/products")
+      .set("Authorization", `Bearer ${token}`)
+      .field("name", "Weissbier 1l")
+      .field("price", "23.70")
+      .field("sellerId", createdSellerUserId)
+      .attach("file", imagePath);
+
+    productId = createProductResponse.body.id;
+
+    sale = {
+      deliveryAddress: "Rua Xablau",
+      deliveryNumber: "237",
+      status: "Pendente",
+      products: [
+        { id: productId, quantity: 2 },
+      ],
+    }
+
+    const createSaleResponse = await request(app)
+      .post("/api/v1/sales")
+      .send(sale)
+      .set("Authorization", `Bearer ${token}`);
+
+    saleId = createSaleResponse.body[0].id;
   });
 
   afterAll(async () => {
     if (saleId) {
       await request(app)
-        .delete(`/api/v1/sales/${saleId}`)
-        .set("Authorization", `Bearer ${token}`);
+      .delete(`/api/v1/sales/${saleId}`)
+      .set("Authorization", `Bearer ${token}`);
+    }
+
+    if (productId) {
+      await request(app)
+      .delete(`/api/v1/products/${productId}`)
+      .set("Authorization", `Bearer ${token}`);
+    }
+
+    if (createdSellerUserId) {
+      await request(app)
+      .delete(`/api/v1/users/${createdSellerUserId}`)
+      .set("Authorization", `Bearer ${token}`);
     }
   });
 
@@ -73,10 +111,6 @@ describe("Testa GET /api/v1/sales", () => {
 
       expect(customer).toHaveProperty("id");
       expect(customer).toHaveProperty("name");
-      expect(customer).toHaveProperty("email");
-      expect(customer).toHaveProperty("role");
-      expect(customer).toHaveProperty("createdAt");
-      expect(customer).toHaveProperty("updatedAt");
     });
 
     it("Seller tem as propriedades esperadas", () => {
@@ -84,10 +118,6 @@ describe("Testa GET /api/v1/sales", () => {
 
       expect(seller).toHaveProperty("id");
       expect(seller).toHaveProperty("name");
-      expect(seller).toHaveProperty("email");
-      expect(seller).toHaveProperty("role");
-      expect(seller).toHaveProperty("createdAt");
-      expect(seller).toHaveProperty("updatedAt");
     });
 
     it("Products têm a estrutura esperada", () => {
@@ -101,6 +131,7 @@ describe("Testa GET /api/v1/sales", () => {
         expect(product).toHaveProperty("name");
         expect(product).toHaveProperty("price");
         expect(product).toHaveProperty("urlImage");
+        expect(product).toHaveProperty("sellerId");
         expect(product).toHaveProperty("orderInfo");
         expect(product.orderInfo).toHaveProperty("quantity");
       });

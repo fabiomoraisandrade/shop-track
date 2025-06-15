@@ -55,28 +55,25 @@ describe("Testa DELETE /api/v1/sales/:id", () => {
       .send(sale)
       .set("Authorization", `Bearer ${token}`);
 
-    console.log('createSaleResponse.body:', createSaleResponse.body);
     saleId = createSaleResponse.body[0].id;
-    console.log(`saleId 1: ${saleId}`);
   });
 
   afterAll(async () => {
-      if (productId) {
-        await request(app)
-        .delete(`/api/v1/products/${productId}`)
-        .set("Authorization", `Bearer ${token}`);
-      }
+    if (productId) {
+      await request(app)
+      .delete(`/api/v1/products/${productId}`)
+      .set("Authorization", `Bearer ${token}`);
+    }
 
-      if (createdSellerUserId) {
-        await request(app)
-        .delete(`/api/v1/users/${createdSellerUserId}`)
-        .set("Authorization", `Bearer ${token}`);
-      }
-    });
+    if (createdSellerUserId) {
+      await request(app)
+      .delete(`/api/v1/users/${createdSellerUserId}`)
+      .set("Authorization", `Bearer ${token}`);
+    }
+  });
 
   describe("Quando a deleção da sale é bem-sucedida", () => {
     beforeAll(async () => {
-      console.log(`saleId 2: ${saleId}`);
       deleteResponse = await request(app)
       .delete(`/api/v1/sales/${saleId}`)
       .set("Authorization", `Bearer ${token}`);
