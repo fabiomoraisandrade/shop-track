@@ -5,8 +5,8 @@ const getSaleByIdService = async (id) => {
   const sale = await Sale.findOne({
     where: { id },
     include: [
-      { model: User, as: "customer" },
-      { model: User, as: "seller" },
+      { model: User, as: "customer", attributes: ["id", "name"] },
+      { model: User, as: "seller", attributes: ["id", "name"] },
       {
         model: Product,
         as: "products",
