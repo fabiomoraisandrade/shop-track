@@ -102,7 +102,7 @@ describe("Testa POST /api/v1/sales", () => {
         .set("Authorization", `Bearer ${token}`)
         .send(sale);
 
-      createdSaleId = createSaleResponse.body.id;
+      createdSaleId = createSaleResponse.body[0].id;
     });
 
     it("Retorna status 201", () => {
