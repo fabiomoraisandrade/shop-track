@@ -9,7 +9,7 @@ const usersAPI = [
     {
         id: 2,
         name: "Usuario teste 1",
-        email: "email@teste1.com",
+        email: "email1@teste.com",
         password: "email@teste1",
         isAdmin: false
     },
