@@ -90,7 +90,7 @@ describe("Testa página de <AdmScreen />", () => {
         expect(userEmail1.innerHTML).toBe('adm@shoptrack.com');
         const userEmail2 = screen.getByTestId('admin_manage__element-user-table-email-1');
         expect(userEmail2).toBeInTheDocument();
-        expect(userEmail2.innerHTML).toBe('email@teste1.com');
+        expect(userEmail2.innerHTML).toBe('email1@teste.com');
         const userRole1 = screen.getByTestId('admin_manage__element-user-table-role-0');
         expect(userRole1).toBeInTheDocument();
         expect(userRole1.innerHTML).toBe('Administrador');

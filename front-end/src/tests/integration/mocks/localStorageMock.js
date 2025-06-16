@@ -1,5 +1,7 @@
 const admUserInfo = require("./data/admUserInfo.json");
-const userInfo = require("./data/userInfo.json");
+const customerUserInfo = require("./data/customerUserInfo.json");
+const sellerUserInfo = require('./data/sellerUserInfo.json');
 
 export const admUserInfoMock = () => JSON.stringify(admUserInfo);
-export const userInfoMock = () => JSON.stringify(userInfo);
+export const customerUserInfoMock = () => JSON.stringify(customerUserInfo);
+export const sellerUserInfoMock = () => JSON.stringify(sellerUserInfo);

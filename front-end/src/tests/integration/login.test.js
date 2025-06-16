@@ -5,7 +5,7 @@ import { act } from 'react-dom/test-utils';
 import renderWithReduxAndRouter from "./renderWithReduxAndRouter";
 import usersAPI from "./mocks/usersMock";
 import productMock from "./mocks/productMock";
-import { userInfoMock } from "./mocks/localStorageMock";
+import { customerUserInfoMock } from "./mocks/localStorageMock";
 import LoginPage from "../../pages/LoginPage";
 
 jest.mock("axios", () => ({
@@ -60,7 +60,7 @@ describe("Testa página de <Login />", () => {
     it('Testa botão de logar', async () => {
         axios.get.mockImplementation((path) => Promise
         .resolve(path === '/users' ? { data: usersAPI } : { data: productMock }));
-        axios.post.mockResolvedValue({ data: userInfoMock });
+        axios.post.mockResolvedValue({ data: customerUserInfoMock });
         renderWithReduxAndRouter(<LoginPage />);
         const inputEmail = screen.getByTestId('common_login__input-email');
         const inputPassword = screen.getByTestId('common_login__input-password');
@@ -70,7 +70,7 @@ describe("Testa página de <Login />", () => {
         userEvent.type(inputEmail, usersAPI[1].email);
         userEvent.type(inputPassword, usersAPI[1].password);
         expect(loginBtn).not.toBeDisabled();
-        jest.spyOn(Object.getPrototypeOf(window.localStorage), 'getItem').mockImplementation(userInfoMock);
+        jest.spyOn(Object.getPrototypeOf(window.localStorage), 'getItem').mockImplementation(customerUserInfoMock);
         await act(async () => userEvent.click(loginBtn));
         expect(axios.post).toHaveBeenCalled();
     });
