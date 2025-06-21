@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { FaStore } from 'react-icons/fa';
+import styled from "styled-components";
+import { FaStore } from "react-icons/fa";
 
 export const Flex = styled.div`
   width: 100%;
@@ -10,7 +10,7 @@ export const Flex = styled.div`
   background-color: #0000;
   box-shadow: 2px 3px 10px gray;
   flex-direction: column;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     flex-direction: row;
     padding: 0 50px;
   }
@@ -20,9 +20,9 @@ export const IconLogo = styled(FaStore)`
   width: 40px;
   height: 40px;
   margin: 10px 0;
-  color: #4B39FF;
+  color: #4b39ff;
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     width: 50px;
     height: 50px;
     margin-right: 10%;
@@ -30,21 +30,21 @@ export const IconLogo = styled(FaStore)`
 `;
 
 export const NavList = styled.nav`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  position: relative;
+  @media (min-width: 768px) {
+    justify-content: flex-start;
     width: 100%;
-    position: relative;
-    @media(min-width: 768px) {
-      justify-content: flex-start;
-      width: 100%;
-      gap: 50px;
-      button:nth-last-child(1) {
-        position: absolute;
-        right: 50px;
-      }
+    gap: 50px;
+    button:nth-last-child(1) {
+      position: absolute;
+      right: 50px;
     }
+  }
 `;
 
 export const RedirectButton = styled.button`
@@ -52,7 +52,7 @@ export const RedirectButton = styled.button`
   border: none;
   background-color: transparent;
   font-size: 12px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   padding: 5px;
   cursor: pointer;
@@ -64,7 +64,7 @@ export const RedirectButton = styled.button`
     border-bottom: 1px solid black;
   }
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 15px;
   }
 `;

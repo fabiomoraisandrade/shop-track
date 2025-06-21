@@ -1,7 +1,7 @@
-import userEvent from "@testing-library/user-event"
+import userEvent from "@testing-library/user-event";
 import axios from "axios";
 import { screen } from "@testing-library/dom";
-import { act } from 'react-dom/test-utils';
+import { act } from "react-dom/test-utils";
 import renderWithReduxAndRouter from "./renderWithReduxAndRouter";
 import usersAPI from "./mocks/usersMock";
 import productMock from "./mocks/productMock";
@@ -18,13 +18,17 @@ jest.mock("axios", () => ({
   post: jest.fn(() => Promise.resolve()),
 }));
 
-describe('Testa página de <Register />', () => {
+describe("Testa página de <Register />", () => {
   beforeEach(async () => {
-    jest.spyOn(Object.getPrototypeOf(window.localStorage), 'getItem')
+    jest
+      .spyOn(Object.getPrototypeOf(window.localStorage), "getItem")
       .mockImplementation(newUserMock);
 
-    axios.get.mockImplementation((path) => Promise
-      .resolve(path === '/users' ? { data: usersAPI } : { data: productMock }));
+    axios.get.mockImplementation((path) =>
+      Promise.resolve(
+        path === "/users" ? { data: usersAPI } : { data: productMock },
+      ),
+    );
     axios.post.mockResolvedValue({ data: newUserMock });
     renderWithReduxAndRouter(<Register />);
   });
@@ -33,41 +37,41 @@ describe('Testa página de <Register />', () => {
     jest.resetAllMocks();
   });
 
-  it('Testa se consta input para nome', () => {
-    const inputName = screen.getByTestId('common_register__input-name');
+  it("Testa se consta input para nome", () => {
+    const inputName = screen.getByTestId("common_register__input-name");
     expect(inputName).toBeDefined();
-    const nameLabel = screen.getByText('Nome');
+    const nameLabel = screen.getByText("Nome");
     expect(nameLabel).toBeInTheDocument();
   });
 
-  it('Testa se consta input para email', () => {
-    const inputEmail = screen.getByTestId('common_register__input-email');
+  it("Testa se consta input para email", () => {
+    const inputEmail = screen.getByTestId("common_register__input-email");
     expect(inputEmail).toBeDefined();
-    const emailLabel = screen.getByText('Email');
+    const emailLabel = screen.getByText("Email");
     expect(emailLabel).toBeInTheDocument();
   });
 
-  it('Testa se consta input para senha', () => {
-    const inputPassword = screen.getByTestId('common_register__input-password');
+  it("Testa se consta input para senha", () => {
+    const inputPassword = screen.getByTestId("common_register__input-password");
     expect(inputPassword).toBeDefined();
-    const passwordLabel = screen.getByText('Senha');
+    const passwordLabel = screen.getByText("Senha");
     expect(passwordLabel).toBeInTheDocument();
   });
 
-  it('Testa se consta botão para cadastro', () => {
-    const registerBtn = screen.getByTestId('common_register__button-register');
+  it("Testa se consta botão para cadastro", () => {
+    const registerBtn = screen.getByTestId("common_register__button-register");
     expect(registerBtn).toBeDefined();
-    expect(registerBtn.innerHTML).toBe('CADASTRAR');
+    expect(registerBtn.innerHTML).toBe("CADASTRAR");
   });
 
-  it('Testa chamada à API', async () => {
-    const inputName = screen.getByTestId('common_register__input-name');
-    const inputEmail = screen.getByTestId('common_register__input-email');
-    const inputPassword = screen.getByTestId('common_register__input-password');
-    const registerBtn = screen.getByTestId('common_register__button-register');
-    userEvent.type(inputName, 'Novo Usuário');
-    userEvent.type(inputEmail, 'newuser@deliveryapp.com');
-    userEvent.type(inputPassword, 'xablau');
+  it("Testa chamada à API", async () => {
+    const inputName = screen.getByTestId("common_register__input-name");
+    const inputEmail = screen.getByTestId("common_register__input-email");
+    const inputPassword = screen.getByTestId("common_register__input-password");
+    const registerBtn = screen.getByTestId("common_register__button-register");
+    userEvent.type(inputName, "Novo Usuário");
+    userEvent.type(inputEmail, "newuser@deliveryapp.com");
+    userEvent.type(inputPassword, "xablau");
     await act(async () => userEvent.click(registerBtn));
     expect(axios.post).toHaveBeenCalled();
   });

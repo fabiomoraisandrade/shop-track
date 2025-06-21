@@ -5,7 +5,6 @@ export const TableContainer = styled.section`
   width: 100%;
   padding: 10px;
   max-width: 1024px;
-
 `;
 
 export const PaperDiv = styled(Paper)`
@@ -14,6 +13,6 @@ export const PaperDiv = styled(Paper)`
   -ms-overflow-style: none;
   scrollbar-width: none;
   ::-webkit-scrollbar {
-  display: none;
+    display: none;
   }
 `;

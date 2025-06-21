@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Form = styled.div`
   width: 100%;
@@ -7,9 +7,9 @@ export const Form = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 30px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
   }
@@ -29,7 +29,7 @@ export const Label = styled.label`
     padding-left: 10px;
   }
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     width: 48%;
   }
 `;

@@ -1,4 +1,4 @@
-import api from './API';
+import api from "./API";
 
 const postProduct = async (name, price, image, sellerId) => {
   try {

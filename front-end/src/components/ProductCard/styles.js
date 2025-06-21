@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ProductContainer = styled.div`
   width: 40%;
@@ -7,7 +7,7 @@ export const ProductContainer = styled.div`
   box-shadow: 4px 7px 10px rgba(0, 0, 0, 0.4);
   margin: 10px;
   background-color: white;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     width: 250px;
     height: 420px;
   }
@@ -35,35 +35,35 @@ export const InfoContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  @media(min-width: 768px) {
-  align-items: flex-start;
+  @media (min-width: 768px) {
+    align-items: flex-start;
   }
 `;
 
 export const Name = styled.p`
   font-size: 19px;
   font-weight: 600;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 25px;
   }
 `;
 
 export const Price = styled.p`
   font-size: 15px;
-  color: #C81B78;
+  color: #c81b78;
   font-weight: 600;
-  @media(min-width: 768px) {
-  font-size: 20px;
+  @media (min-width: 768px) {
+    font-size: 20px;
   }
 `;
 
 export const Span = styled.span`
   font-size: 24px;
-  color: #C81B78;
+  color: #c81b78;
   font-weight: 800;
   margin-left: 4px;
-  @media(min-width: 768px) {
-  font-size: 27px;
+  @media (min-width: 768px) {
+    font-size: 27px;
   }
 `;
 
@@ -82,12 +82,12 @@ export const ChangeQuantity = styled.div`
     width: 33.3%;
     font-weight: 700;
     border: none;
-    background-color: #32892F;
+    background-color: #32892f;
     padding: 5px;
     border-radius: 50px;
     cursor: pointer;
   }
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     width: 70%;
   }
 `;

@@ -1,16 +1,18 @@
 import axios from "axios";
 import { screen } from "@testing-library/dom";
-import { act } from 'react-dom/test-utils';
+import { act } from "react-dom/test-utils";
 import renderWithReduxAndRouter from "./renderWithReduxAndRouter";
 import usersAPI from "./mocks/usersMock";
 import sellerOrdersMock from "./mocks/ordersMock";
 import { sellerUserInfoMock } from "./mocks/localStorageMock";
 import { SellerOrders } from "../../pages";
 
-jest.mock('socket.io-client', () => jest.fn(() => ({
-  emit: jest.fn(),
-  on: jest.fn(),
-})));
+jest.mock("socket.io-client", () =>
+  jest.fn(() => ({
+    emit: jest.fn(),
+    on: jest.fn(),
+  })),
+);
 
 jest.mock("axios", () => ({
   create: jest.fn().mockReturnThis(),
@@ -21,12 +23,16 @@ jest.mock("axios", () => ({
   get: jest.fn(() => Promise.resolve()),
 }));
 
-describe('Testa SellerOrders', () => {
+describe("Testa SellerOrders", () => {
   beforeEach(async () => {
-    jest.spyOn(Object.getPrototypeOf(window.localStorage), 'getItem')
+    jest
+      .spyOn(Object.getPrototypeOf(window.localStorage), "getItem")
       .mockImplementation(sellerUserInfoMock);
-    axios.get.mockImplementation((path) => Promise
-      .resolve(path === '/users' ? { data: usersAPI } : { data: sellerOrdersMock }));
+    axios.get.mockImplementation((path) =>
+      Promise.resolve(
+        path === "/users" ? { data: usersAPI } : { data: sellerOrdersMock },
+      ),
+    );
     await act(async () => renderWithReduxAndRouter(<SellerOrders />));
   });
 
@@ -34,18 +40,25 @@ describe('Testa SellerOrders', () => {
     jest.resetAllMocks();
   });
 
-  it('Renderiza os componentes', () => {
-    const ordersNav = screen
-      .getByTestId('customer_products__element-navbar-link-orders');
-    const userName = screen
-      .getByTestId('customer_products__element-navbar-user-full-name');
-      const logoutNav = screen
-      .getByTestId('customer_products__element-navbar-link-logout');
-    const orderNumber = screen.getByTestId('seller_orders__element-order-id-1');
-    const orderStatus = screen.getByTestId('seller_orders__element-delivery-status-1');
-    const orderDate = screen.getByTestId('seller_orders__element-order-date-1');
-    const cardPrice = screen.getByTestId('seller_orders__element-card-price-1');
-    const cardAddress = screen.getByTestId('seller_orders__element-card-address-1');
+  it("Renderiza os componentes", () => {
+    const ordersNav = screen.getByTestId(
+      "customer_products__element-navbar-link-orders",
+    );
+    const userName = screen.getByTestId(
+      "customer_products__element-navbar-user-full-name",
+    );
+    const logoutNav = screen.getByTestId(
+      "customer_products__element-navbar-link-logout",
+    );
+    const orderNumber = screen.getByTestId("seller_orders__element-order-id-1");
+    const orderStatus = screen.getByTestId(
+      "seller_orders__element-delivery-status-1",
+    );
+    const orderDate = screen.getByTestId("seller_orders__element-order-date-1");
+    const cardPrice = screen.getByTestId("seller_orders__element-card-price-1");
+    const cardAddress = screen.getByTestId(
+      "seller_orders__element-card-address-1",
+    );
     expect(ordersNav).toBeInTheDocument();
     expect(userName).toBeInTheDocument();
     expect(logoutNav).toBeInTheDocument();
@@ -56,13 +69,16 @@ describe('Testa SellerOrders', () => {
     expect(cardAddress).toBeInTheDocument();
   });
 
-  it('Renderiza as informações corretas', () => {
-    const userName = screen
-      .getByTestId('customer_products__element-navbar-user-full-name');
-    const orderNumber = screen.getByTestId('seller_orders__element-order-id-1');
-    const orderStatus = screen.getByTestId('seller_orders__element-delivery-status-1');
-    expect(userName.innerHTML).toBe('Usuario teste 2');
-    expect(orderNumber.innerHTML).toBe('0001');
-    expect(orderStatus.innerHTML).toBe('Pendente');
+  it("Renderiza as informações corretas", () => {
+    const userName = screen.getByTestId(
+      "customer_products__element-navbar-user-full-name",
+    );
+    const orderNumber = screen.getByTestId("seller_orders__element-order-id-1");
+    const orderStatus = screen.getByTestId(
+      "seller_orders__element-delivery-status-1",
+    );
+    expect(userName.innerHTML).toBe("Usuario teste 2");
+    expect(orderNumber.innerHTML).toBe("0001");
+    expect(orderStatus.innerHTML).toBe("Pendente");
   });
 });

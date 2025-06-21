@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MainTag = styled.main`
   align-items: center;
@@ -27,7 +27,7 @@ export const OrderListContainer = styled.section`
   flex-wrap: wrap;
   align-items: center;
   padding: 10px;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     justify-content: space-around;
     flex-direction: row;
   }

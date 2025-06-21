@@ -1,7 +1,7 @@
 {
-    "email": "adm@shoptrack.com",
-    "id": 1,
-    "name": "Shop Track Admin",
-    "isAdmin": true,
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlVzdWFyaW8gVGVzdGUgMSIsImVtYWlsIjoiZW1haWwxQHRlc3RlLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDI1LTA1LTI2VDIyOjA5OjA2LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDI1LTA1LTI2VDIyOjA5OjA2LjAwMFoiLCJpYXQiOjE3NTAwODgxNjcsImV4cCI6MTc1MDEzMTM2N30.KJDr8I1qQGUR2YKGn5c3Igx6flebdz257VVepS3jerQ"
+  "email": "adm@shoptrack.com",
+  "id": 1,
+  "name": "Shop Track Admin",
+  "isAdmin": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlVzdWFyaW8gVGVzdGUgMSIsImVtYWlsIjoiZW1haWwxQHRlc3RlLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDI1LTA1LTI2VDIyOjA5OjA2LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDI1LTA1LTI2VDIyOjA5OjA2LjAwMFoiLCJpYXQiOjE3NTAwODgxNjcsImV4cCI6MTc1MDEzMTM2N30.KJDr8I1qQGUR2YKGn5c3Igx6flebdz257VVepS3jerQ"
 }

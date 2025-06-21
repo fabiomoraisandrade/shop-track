@@ -1,6 +1,6 @@
-import { useCheckLogin } from '../hooks';
-import { CustomerHeader, ProductForm } from '../components';
-import { MainTag } from '../global-styles/globalComponents';
+import { useCheckLogin } from "../hooks";
+import { CustomerHeader, ProductForm } from "../components";
+import { MainTag } from "../global-styles/globalComponents";
 
 const CustomerPage = () => {
   useCheckLogin();

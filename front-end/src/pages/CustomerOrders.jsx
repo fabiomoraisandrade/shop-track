@@ -3,14 +3,14 @@ import { CustomerHeader, CustomerOrdersList } from "../components";
 import { MainTag } from "../global-styles/globalComponents";
 
 const CustomerOrders = () => {
-    useCheckLogin();
+  useCheckLogin();
 
-    return (
-        <MainTag>
-            <CustomerHeader />
-            <CustomerOrdersList />
-        </MainTag>
-    )
-}
+  return (
+    <MainTag>
+      <CustomerHeader />
+      <CustomerOrdersList />
+    </MainTag>
+  );
+};
 
 export default CustomerOrders;

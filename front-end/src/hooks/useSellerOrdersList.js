@@ -7,30 +7,30 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
 const socket = io(API_BASE_URL);
 
 const useSellerOrdersList = () => {
-    const mounted = useRef(false);
-    const [orders, setOrders] = useState([]);
-    const userId = getUserInfo("id");
+  const mounted = useRef(false);
+  const [orders, setOrders] = useState([]);
+  const userId = getUserInfo("id");
 
-    useEffect(() => {
-        mounted.current = true;
-        return () => {
-            mounted.current = false;
-        }
-    }, []);
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
-    useEffect(() => {
-        const updateOrder = () => {
-            if (mounted.current) {
-                getSalesFromSeller(userId).then((response) => setOrders(response));
-            }
-        };
+  useEffect(() => {
+    const updateOrder = () => {
+      if (mounted.current) {
+        getSalesFromSeller(userId).then((response) => setOrders(response));
+      }
+    };
 
-        updateOrder();
+    updateOrder();
 
-        socket.on("statusUpdated", () => updateOrder());
-    }, [userId]);
+    socket.on("statusUpdated", () => updateOrder());
+  }, [userId]);
 
-    return { orders };
+  return { orders };
 };
 
 export default useSellerOrdersList;

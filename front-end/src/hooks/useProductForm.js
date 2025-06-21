@@ -17,7 +17,7 @@ const useProductForm = () => {
       setInfo((prev) => ({ ...prev, [name]: numericValue.replace(".", ",") }));
       return;
     }
-    
+
     if (files && files[0]) {
       const file = files[0];
 
@@ -53,7 +53,7 @@ const useProductForm = () => {
       info.name,
       info.price,
       info.image,
-      seller.id
+      seller.id,
     );
 
     if (response && response.id) {

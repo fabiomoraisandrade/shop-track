@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ProductListContainer = styled.section`
   width: 100vw;
@@ -14,7 +14,7 @@ export const ProductSection = styled.section`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     margin: auto auto 90px auto;
   }
 `;
@@ -28,20 +28,20 @@ export const FloatButtonCart = styled.button`
   height: 50px;
   display: flex;
   border-radius: 5px;
-  color:  white;
+  color: white;
   font-size: 13px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background-color: #C81B78;
+  background-color: #c81b78;
   text-transform: uppercase;
   letter-spacing: 2px;
   &:hover {
     background-color: #96155b;
   }
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     right: 30px;
     width: auto;
     max-width: 40%;

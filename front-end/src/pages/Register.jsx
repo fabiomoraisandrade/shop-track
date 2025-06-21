@@ -2,9 +2,9 @@ import { RegisterForm } from "../components";
 import { MainTag } from "../global-styles/globalComponents";
 
 const Register = () => (
-    <MainTag>
-        <RegisterForm />
-    </MainTag>
-)
+  <MainTag>
+    <RegisterForm />
+  </MainTag>
+);
 
 export default Register;

@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import axios from "axios";
 import { screen } from "@testing-library/dom";
-import { act } from 'react-dom/test-utils';
+import { act } from "react-dom/test-utils";
 import renderWithReduxAndRouter from "./renderWithReduxAndRouter";
 import usersAPI from "./mocks/usersMock";
 import productMock from "./mocks/productMock";
@@ -19,59 +19,64 @@ jest.mock("axios", () => ({
 }));
 
 describe("Testa página de <Login />", () => {
-    it("Testa se consta input para email", () => {
-        renderWithReduxAndRouter(<LoginPage />);
-        const inputEmail = screen.getByTestId("common_login__input-email");
-        expect(inputEmail).toBeDefined();
-    });
+  it("Testa se consta input para email", () => {
+    renderWithReduxAndRouter(<LoginPage />);
+    const inputEmail = screen.getByTestId("common_login__input-email");
+    expect(inputEmail).toBeDefined();
+  });
 
-    it('Testa se conta input para senha', () => {
-        renderWithReduxAndRouter(<LoginPage />);
-        const inputPassword = screen.getByTestId('common_login__input-password');
-        expect(inputPassword).toBeDefined();
-    });
+  it("Testa se conta input para senha", () => {
+    renderWithReduxAndRouter(<LoginPage />);
+    const inputPassword = screen.getByTestId("common_login__input-password");
+    expect(inputPassword).toBeDefined();
+  });
 
-    it('Testa se botão de login está na tela', () => {
-        renderWithReduxAndRouter(<LoginPage />);
-        const loginBtn = screen.getByTestId('common_login__button-login');
-        expect(loginBtn).toBeDefined();
-        expect(loginBtn.innerHTML).toBe('LOGIN');
-    });
+  it("Testa se botão de login está na tela", () => {
+    renderWithReduxAndRouter(<LoginPage />);
+    const loginBtn = screen.getByTestId("common_login__button-login");
+    expect(loginBtn).toBeDefined();
+    expect(loginBtn.innerHTML).toBe("LOGIN");
+  });
 
-    it('Testa se botão de cadastrar está na tela', () => {
-        renderWithReduxAndRouter(<LoginPage />);
-        const register = screen.getByTestId('common_login__button-register');
-        expect(register).toBeDefined();
-        expect(register.innerHTML).toBe('Ainda não possuo conta');
-    });
+  it("Testa se botão de cadastrar está na tela", () => {
+    renderWithReduxAndRouter(<LoginPage />);
+    const register = screen.getByTestId("common_login__button-register");
+    expect(register).toBeDefined();
+    expect(register.innerHTML).toBe("Ainda não possuo conta");
+  });
 
-    it('Testa se as descrições estão na tela', () => {
-        renderWithReduxAndRouter(<LoginPage />);
-        const title = screen.getByText('Login');
-        expect(title).toBeInTheDocument();
-        const emailLabel = screen.getByText('Email');
-        expect(emailLabel).toBeInTheDocument();
-        const passwordLabel = screen.getByText('Senha');
-        expect(passwordLabel).toBeInTheDocument();
-        const copyright = screen.getByText('Shop Track');
-        expect(copyright).toBeInTheDocument();
-    });
+  it("Testa se as descrições estão na tela", () => {
+    renderWithReduxAndRouter(<LoginPage />);
+    const title = screen.getByText("Login");
+    expect(title).toBeInTheDocument();
+    const emailLabel = screen.getByText("Email");
+    expect(emailLabel).toBeInTheDocument();
+    const passwordLabel = screen.getByText("Senha");
+    expect(passwordLabel).toBeInTheDocument();
+    const copyright = screen.getByText("Shop Track");
+    expect(copyright).toBeInTheDocument();
+  });
 
-    it('Testa botão de logar', async () => {
-        axios.get.mockImplementation((path) => Promise
-        .resolve(path === '/users' ? { data: usersAPI } : { data: productMock }));
-        axios.post.mockResolvedValue({ data: customerUserInfoMock });
-        renderWithReduxAndRouter(<LoginPage />);
-        const inputEmail = screen.getByTestId('common_login__input-email');
-        const inputPassword = screen.getByTestId('common_login__input-password');
-        const loginBtn = screen.getByTestId('common_login__button-login');
-        console.log(`usersAPI[1].email: ${usersAPI[1].email}`);
-        console.log(`usersAPI[1].password: ${usersAPI[1].password}`);
-        userEvent.type(inputEmail, usersAPI[1].email);
-        userEvent.type(inputPassword, usersAPI[1].password);
-        expect(loginBtn).not.toBeDisabled();
-        jest.spyOn(Object.getPrototypeOf(window.localStorage), 'getItem').mockImplementation(customerUserInfoMock);
-        await act(async () => userEvent.click(loginBtn));
-        expect(axios.post).toHaveBeenCalled();
-    });
-})
+  it("Testa botão de logar", async () => {
+    axios.get.mockImplementation((path) =>
+      Promise.resolve(
+        path === "/users" ? { data: usersAPI } : { data: productMock },
+      ),
+    );
+    axios.post.mockResolvedValue({ data: customerUserInfoMock });
+    renderWithReduxAndRouter(<LoginPage />);
+    const inputEmail = screen.getByTestId("common_login__input-email");
+    const inputPassword = screen.getByTestId("common_login__input-password");
+    const loginBtn = screen.getByTestId("common_login__button-login");
+    console.log(`usersAPI[1].email: ${usersAPI[1].email}`);
+    console.log(`usersAPI[1].password: ${usersAPI[1].password}`);
+    userEvent.type(inputEmail, usersAPI[1].email);
+    userEvent.type(inputPassword, usersAPI[1].password);
+    expect(loginBtn).not.toBeDisabled();
+    jest
+      .spyOn(Object.getPrototypeOf(window.localStorage), "getItem")
+      .mockImplementation(customerUserInfoMock);
+    await act(async () => userEvent.click(loginBtn));
+    expect(axios.post).toHaveBeenCalled();
+  });
+});

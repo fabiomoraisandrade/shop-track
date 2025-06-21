@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Paper from '@mui/material/Paper';
+import styled from "styled-components";
+import Paper from "@mui/material/Paper";
 
 export const CheckoutItensContainer = styled.section`
   width: 100%;
@@ -7,7 +7,7 @@ export const CheckoutItensContainer = styled.section`
   padding: 10px;
   display: flex;
   flex-flow: column nowrap;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     max-width: 1024px;
     overflow-x: auto;
   }
@@ -18,18 +18,18 @@ export const PaperDiv = styled(Paper)`
   -ms-overflow-style: none;
   scrollbar-width: none;
   ::-webkit-scrollbar {
-  display: none;
-}
+    display: none;
+  }
 `;
 
 export const H1 = styled.h1`
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 25px;
   font-weight: 800;
 `;
 
 export const TotalContainer = styled.div`
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
   height: 50px;
@@ -43,7 +43,7 @@ export const TotalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  @media(min-width:768px) {
+  @media (min-width: 768px) {
     align-self: flex-end;
   }
 `;
@@ -56,7 +56,7 @@ export const Div = styled.div`
   margin-bottom: 10px;
   gap: 15px;
   flex-direction: column;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     flex-direction: row;
     max-width: 1024px;
     overflow-x: auto;

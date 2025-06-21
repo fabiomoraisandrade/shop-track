@@ -1,15 +1,15 @@
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
-import { configureStore } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { render } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
+import { configureStore } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import rootReducer from "../../redux/reducers";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-  whitelist: ['cart'],
+  whitelist: ["cart"],
 };
 
 const renderWithReduxAndRouter = (
@@ -23,19 +23,15 @@ const renderWithReduxAndRouter = (
         getDefaultMiddleware({
           serializableCheck: false,
         }),
-      devTools: process.env.NODE_ENV !== 'production',
+      devTools: process.env.NODE_ENV !== "production",
     }),
   } = {},
-  {
-    route = '/',
-  } = {}
+  { route = "/" } = {},
 ) => ({
   ...render(
     <Provider store={store}>
-      <MemoryRouter initialEntries={[route]}>
-        {component}
-      </MemoryRouter>
-    </Provider>
+      <MemoryRouter initialEntries={[route]}>{component}</MemoryRouter>
+    </Provider>,
   ),
   store,
 });

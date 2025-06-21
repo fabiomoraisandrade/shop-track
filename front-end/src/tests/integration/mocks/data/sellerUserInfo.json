@@ -1,7 +1,7 @@
 {
-    "email": "email2@teste.com",
-    "id": 3,
-    "name": "Usuario teste 2",
-    "isAdmin": false,
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlVzdWFyaW8gVGVzdGUgMSIsImVtYWlsIjoiZW1haWwxQHRlc3RlLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDI1LTA1LTI2VDIyOjA5OjA2LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDI1LTA1LTI2VDIyOjA5OjA2LjAwMFoiLCJpYXQiOjE3NTAwODgzMTMsImV4cCI6MTc1MDEzMTUxM30.mRe6K0LBaApfqMtb3vvvaBBrCjCLI0Z-ocldvwJI3Ww"
+  "email": "email2@teste.com",
+  "id": 3,
+  "name": "Usuario teste 2",
+  "isAdmin": false,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlVzdWFyaW8gVGVzdGUgMSIsImVtYWlsIjoiZW1haWwxQHRlc3RlLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDI1LTA1LTI2VDIyOjA5OjA2LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDI1LTA1LTI2VDIyOjA5OjA2LjAwMFoiLCJpYXQiOjE3NTAwODgzMTMsImV4cCI6MTc1MDEzMTUxM30.mRe6K0LBaApfqMtb3vvvaBBrCjCLI0Z-ocldvwJI3Ww"
 }

@@ -7,9 +7,9 @@ const API_BASE_URL = process.env.REACT_APP_API_URL;
 const socket = io(API_BASE_URL);
 
 const useCustomerOrdersList = () => {
-    const mounted = useRef(false);
-    const [orders, setOrders] = useState([]);
-    const userId = getUserInfo("id");
+  const mounted = useRef(false);
+  const [orders, setOrders] = useState([]);
+  const userId = getUserInfo("id");
 
   useEffect(() => {
     mounted.current = true;
@@ -27,10 +27,10 @@ const useCustomerOrdersList = () => {
 
     updateOrder();
 
-    socket.on('statusUpdated', () => updateOrder());
+    socket.on("statusUpdated", () => updateOrder());
   }, [userId]);
 
   return { orders };
-}
+};
 
 export default useCustomerOrdersList;

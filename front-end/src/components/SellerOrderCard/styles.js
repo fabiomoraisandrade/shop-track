@@ -1,17 +1,17 @@
-import styled from 'styled-components';
-import { FiClock } from 'react-icons/fi';
-import { BsFillCheckCircleFill } from 'react-icons/bs';
+import styled from "styled-components";
+import { FiClock } from "react-icons/fi";
+import { BsFillCheckCircleFill } from "react-icons/bs";
 
 export const CardContainer = styled.div`
   height: 150px;
   width: 100%;
   border-radius: 6px;
-  background-color: #FFFF;
+  background-color: #ffff;
   box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.6);
   display: flex;
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  @media(min-width: 768px) {
+  font-family: "Montserrat", sans-serif;
+  @media (min-width: 768px) {
     height: 150px;
     width: 450px;
     display: flex;
@@ -25,7 +25,7 @@ export const OrderContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  background-color: #C81B78;
+  background-color: #c81b78;
   color: white;
   border-radius: 6px 0 0 6px;
   p {
@@ -34,8 +34,8 @@ export const OrderContainer = styled.div`
 `;
 
 export const OrderDetails = styled.div`
-width: 75%;
-height: 100%;
+  width: 75%;
+  height: 100%;
 `;
 
 export const DetailsTop = styled.div`
@@ -53,7 +53,7 @@ export const StatusContainer = styled.div`
   align-items: center;
   gap: 15px;
   text-align: center;
-  P{
+  P {
     font-weight: 800;
     color: ${({ status }) => (status === "Pendente" ? "#93032E" : "#71B340")};
   }
@@ -65,7 +65,7 @@ export const ClockIcon = styled(FiClock)`
   padding: 2px;
   border-radius: 3px;
   color: white;
-  background-color: #93032E;
+  background-color: #93032e;
 `;
 
 export const CheckIcon = styled(BsFillCheckCircleFill)`
@@ -74,20 +74,20 @@ export const CheckIcon = styled(BsFillCheckCircleFill)`
   padding: 2px;
   border-radius: 3px;
   color: white;
-  background-color: #71B340;
+  background-color: #71b340;
 `;
 
 export const NumericInfo = styled.div`
-width: 50%;
-display: flex;
-flex-direction: column;
-justify-content: space-evenly;
-border-radius: 0 6px 6px 0;
-text-align: center;
-span {
-  font-weight: 800;
-  color: #C81B78;
-}
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 0 6px 6px 0;
+  text-align: center;
+  span {
+    font-weight: 800;
+    color: #c81b78;
+  }
 `;
 
 export const AddressContainer = styled.div`

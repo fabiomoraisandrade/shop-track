@@ -2,14 +2,14 @@ import { useCheckLogin } from "../hooks";
 import { CustomerHeader, CustomerOrderDetailsField } from "../components";
 
 const CustomerOrderDetails = () => {
-    useCheckLogin();
+  useCheckLogin();
 
-    return (
-        <>
-            <CustomerHeader />
-            <CustomerOrderDetailsField />
-        </>
-    );
+  return (
+    <>
+      <CustomerHeader />
+      <CustomerOrderDetailsField />
+    </>
+  );
 };
 
 export default CustomerOrderDetails;

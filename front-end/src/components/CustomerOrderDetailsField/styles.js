@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Paper } from '@mui/material';
+import styled from "styled-components";
+import { Paper } from "@mui/material";
 
 export const ProductListContainer = styled.section`
   width: 100%;
@@ -13,9 +13,9 @@ export const ProductListContainer = styled.section`
 
 export const DetailsTitle = styled.h2`
   align-self: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin-bottom: 20px;
-  @media(min-width:768px) {
+  @media (min-width: 768px) {
     align-self: flex-start;
   }
 `;
@@ -27,11 +27,10 @@ export const DetailsContainer = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
-
 `;
 
 export const TotalPrice = styled.span`
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
   height: 50px;
@@ -45,7 +44,7 @@ export const TotalPrice = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  @media(min-width:768px) {
+  @media (min-width: 768px) {
     align-self: flex-end;
   }
 `;
@@ -58,10 +57,10 @@ export const StatusField = styled.div`
   gap: 10px;
   margin-bottom: 15px;
   span {
-    color: rgba(0,0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
     font-weight: 800;
   }
-  @media(min-width:768px) {
+  @media (min-width: 768px) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -75,14 +74,14 @@ export const ConfirmButton = styled.button`
   border: none;
   border-radius: 5px;
   color: white;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: ${({ disabled }) => (disabled ? "lightgray" : "#ED2757")};
   letter-spacing: 0px;
-  @media(min-width:768px) {
-  width: auto;
-  flex-direction: row;
-  letter-spacing: 2px;
-  align-items: center;
+  @media (min-width: 768px) {
+    width: auto;
+    flex-direction: row;
+    letter-spacing: 2px;
+    align-items: center;
   }
 `;
 
@@ -92,6 +91,6 @@ export const PaperDiv = styled(Paper)`
   -ms-overflow-style: none;
   scrollbar-width: none;
   ::-webkit-scrollbar {
-  display: none;
+    display: none;
   }
 `;

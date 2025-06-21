@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AdmSection = styled.section`
   padding: 10px;
@@ -7,8 +7,8 @@ export const AdmSection = styled.section`
   max-width: 1024px;
   flex-direction: column;
   gap: 40px;
-  font-family: 'Montserrat', sans-serif;
-  @media(min-width: 768px) {
+  font-family: "Montserrat", sans-serif;
+  @media (min-width: 768px) {
   }
 `;
 
@@ -18,7 +18,7 @@ export const Form = styled.section`
   flex-direction: column;
   align-items: flex-start;
   gap: 15px;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     flex-direction: row;
     align-items: flex-end;
   }
@@ -40,10 +40,10 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   border: none;
-  background-color: #C81B78;
+  background-color: #c81b78;
   color: white;
   font-size: 20px;
   padding: 10px 25px;

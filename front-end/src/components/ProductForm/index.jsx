@@ -1,18 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import {
-  Main, Section, H1, Input, Label, BtnRegister, HeaderContainer, BackButton, PreviewImage
+  Main,
+  Section,
+  H1,
+  Input,
+  Label,
+  BtnRegister,
+  HeaderContainer,
+  BackButton,
+  PreviewImage,
 } from "./style";
 import { FaArrowLeft } from "react-icons/fa";
 import useProductForm from "../../hooks/useProductForm";
 
 const ProductForm = () => {
-  const {
-    info,
-    previewImage,
-    handleChange,
-    handleSubmit,
-    isFormInvalid,
-  } = useProductForm();
+  const { info, previewImage, handleChange, handleSubmit, isFormInvalid } =
+    useProductForm();
 
   const navigate = useNavigate();
 
@@ -20,7 +23,10 @@ const ProductForm = () => {
     <Main>
       <Section>
         <HeaderContainer>
-          <BackButton onClick={() => navigate("/products")} aria-label="Voltar para produtos">
+          <BackButton
+            onClick={() => navigate("/products")}
+            aria-label="Voltar para produtos"
+          >
             <FaArrowLeft size={20} />
           </BackButton>
           <H1>Cadastrar Produto</H1>
@@ -60,10 +66,7 @@ const ProductForm = () => {
         </Label>
 
         {previewImage && (
-          <PreviewImage
-            src={previewImage}
-            alt="Pré-visualização do produto"
-          />
+          <PreviewImage src={previewImage} alt="Pré-visualização do produto" />
         )}
 
         <BtnRegister
@@ -73,7 +76,6 @@ const ProductForm = () => {
         >
           Cadastrar Produto
         </BtnRegister>
-
       </Section>
     </Main>
   );
