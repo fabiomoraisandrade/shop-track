@@ -3,9 +3,9 @@ import { screen } from "@testing-library/dom";
 import { act } from 'react-dom/test-utils';
 import renderWithReduxAndRouter from "./renderWithReduxAndRouter";
 import usersAPI from "./mocks/usersMock";
-import customerOrdersMock from "./mocks/ordersMock";
-import { customerUserInfoMock } from "./mocks/localStorageMock";
-import { CustomerOrders } from "../../pages";
+import sellerOrdersMock from "./mocks/ordersMock";
+import { sellerUserInfoMock } from "./mocks/localStorageMock";
+import { SellerOrders } from "../../pages";
 
 jest.mock('socket.io-client', () => jest.fn(() => ({
   emit: jest.fn(),
@@ -21,13 +21,13 @@ jest.mock("axios", () => ({
   get: jest.fn(() => Promise.resolve()),
 }));
 
-describe('Testa CustomerOrders', () => {
+describe('Testa SellerOrders', () => {
   beforeEach(async () => {
     jest.spyOn(Object.getPrototypeOf(window.localStorage), 'getItem')
-      .mockImplementation(customerUserInfoMock);
+      .mockImplementation(sellerUserInfoMock);
     axios.get.mockImplementation((path) => Promise
-      .resolve(path === '/users' ? { data: usersAPI } : { data: customerOrdersMock }));
-    await act(async () => renderWithReduxAndRouter(<CustomerOrders />));
+      .resolve(path === '/users' ? { data: usersAPI } : { data: sellerOrdersMock }));
+    await act(async () => renderWithReduxAndRouter(<SellerOrders />));
   });
 
   afterEach(() => {
@@ -35,19 +35,17 @@ describe('Testa CustomerOrders', () => {
   });
 
   it('Renderiza os componentes', () => {
-    const productsNav = screen
-      .getByTestId('customer_products__element-navbar-link-products');
     const ordersNav = screen
       .getByTestId('customer_products__element-navbar-link-orders');
     const userName = screen
       .getByTestId('customer_products__element-navbar-user-full-name');
       const logoutNav = screen
       .getByTestId('customer_products__element-navbar-link-logout');
-    const orderNumber = screen.getByTestId('customer_orders__element-order-id-1');
-    const orderStatus = screen.getByTestId('customer_orders__element-delivery-status-1');
-    const orderDate = screen.getByTestId('customer_orders__element-order-date-1');
-    const cardPrice = screen.getByTestId('customer_orders__element-card-price-1');
-    expect(productsNav).toBeInTheDocument();
+    const orderNumber = screen.getByTestId('seller_orders__element-order-id-1');
+    const orderStatus = screen.getByTestId('seller_orders__element-delivery-status-1');
+    const orderDate = screen.getByTestId('seller_orders__element-order-date-1');
+    const cardPrice = screen.getByTestId('seller_orders__element-card-price-1');
+    const cardAddress = screen.getByTestId('seller_orders__element-card-address-1');
     expect(ordersNav).toBeInTheDocument();
     expect(userName).toBeInTheDocument();
     expect(logoutNav).toBeInTheDocument();
@@ -55,14 +53,15 @@ describe('Testa CustomerOrders', () => {
     expect(orderStatus).toBeInTheDocument();
     expect(orderDate).toBeInTheDocument();
     expect(cardPrice).toBeInTheDocument();
+    expect(cardAddress).toBeInTheDocument();
   });
 
-  it('Renderiza as informações corretas', async () => {
+  it('Renderiza as informações corretas', () => {
     const userName = screen
       .getByTestId('customer_products__element-navbar-user-full-name');
-    const orderNumber = screen.getByTestId('customer_orders__element-order-id-1');
-    const orderStatus = screen.getByTestId('customer_orders__element-delivery-status-1');
-    expect(userName.innerHTML).toBe('Usuario teste 1');
+    const orderNumber = screen.getByTestId('seller_orders__element-order-id-1');
+    const orderStatus = screen.getByTestId('seller_orders__element-delivery-status-1');
+    expect(userName.innerHTML).toBe('Usuario teste 2');
     expect(orderNumber.innerHTML).toBe('0001');
     expect(orderStatus.innerHTML).toBe('Pendente');
   });
