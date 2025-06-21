@@ -1,4 +1,4 @@
-import userEvent from "@testing-library/user-event"
+import userEvent from "@testing-library/user-event";
 import axios from "axios";
 import { screen } from "@testing-library/dom";
 import { act } from 'react-dom/test-utils';
