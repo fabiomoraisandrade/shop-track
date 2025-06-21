@@ -27,7 +27,7 @@ describe("Testa PUT /api/v1/sales/:id", () => {
         email: "usuario.teste@getid.com",
         password: "teste123",
         isAdmin: false,
-    });
+      });
 
     createdSellerUserId = createSellerUserResponse.body.id;
 
@@ -45,10 +45,8 @@ describe("Testa PUT /api/v1/sales/:id", () => {
       deliveryAddress: "Rua Xablau",
       deliveryNumber: "237",
       status: "Pendente",
-      products: [
-        { id: productId, quantity: 2 },
-      ],
-    }
+      products: [{ id: productId, quantity: 2 }],
+    };
 
     const createdResponse = await request(app)
       .post("/api/v1/sales")
@@ -74,20 +72,20 @@ describe("Testa PUT /api/v1/sales/:id", () => {
   afterAll(async () => {
     if (createdSaleId) {
       await request(app)
-      .delete(`/api/v1/sales/${createdSaleId}`)
-      .set("Authorization", `Bearer ${token}`);
+        .delete(`/api/v1/sales/${createdSaleId}`)
+        .set("Authorization", `Bearer ${token}`);
     }
 
     if (productId) {
       await request(app)
-      .delete(`/api/v1/products/${productId}`)
-      .set("Authorization", `Bearer ${token}`);
+        .delete(`/api/v1/products/${productId}`)
+        .set("Authorization", `Bearer ${token}`);
     }
 
     if (createdSellerUserId) {
       await request(app)
-      .delete(`/api/v1/users/${createdSellerUserId}`)
-      .set("Authorization", `Bearer ${token}`);
+        .delete(`/api/v1/users/${createdSellerUserId}`)
+        .set("Authorization", `Bearer ${token}`);
     }
   });
 

@@ -24,7 +24,7 @@ describe("Testa POST /api/v1/products", () => {
         email: "usuario.teste@getid.com",
         password: "teste123",
         isAdmin: false,
-    });
+      });
 
     createdSellerUserId = createSellerUserResponse.body.id;
 
@@ -122,7 +122,9 @@ describe("Testa POST /api/v1/products", () => {
         .attach("file", imagePath);
 
       expect(response.status).toBe(400);
-      expect(response.body.message).toBe("sellerId must be a valid positive integer");
+      expect(response.body.message).toBe(
+        "sellerId must be a valid positive integer",
+      );
     });
   });
 
@@ -153,7 +155,6 @@ describe("Testa POST /api/v1/products", () => {
     it("Retorna a mensagem de erro correta", () => {
       expect(response.body.message).toBe("Product already exists");
     });
-
   });
 
   describe("Quando é criado com sucesso", () => {

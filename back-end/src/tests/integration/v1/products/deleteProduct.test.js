@@ -26,7 +26,7 @@ describe("Testa DELETE /api/v1/products/:id", () => {
           email: "usuario.teste@getid.com",
           password: "teste123",
           isAdmin: false,
-      });
+        });
 
       createdSellerUserId = createSellerUserResponse.body.id;
 

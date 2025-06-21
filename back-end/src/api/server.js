@@ -5,7 +5,7 @@ const socketListener = require("../socket");
 const app = require("./app");
 
 const PORT = process.env.PORT;
-const SOCKET_CLIENT_ORIGIN = process.env.SOCKET_CLIENT_ORIGIN
+const SOCKET_CLIENT_ORIGIN = process.env.SOCKET_CLIENT_ORIGIN;
 
 const server = http.createServer(app);
 

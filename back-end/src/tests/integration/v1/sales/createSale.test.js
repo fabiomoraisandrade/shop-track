@@ -18,54 +18,52 @@ describe("Testa POST /api/v1/sales", () => {
     token = res.body.token;
 
     const createSellerUserResponse = await request(app)
-        .post("/api/v1/users")
-        .set("Authorization", `Bearer ${token}`)
-        .send({
-          name: "Usuário Teste",
-          email: "usuario.teste@getid.com",
-          password: "teste123",
-          isAdmin: false,
+      .post("/api/v1/users")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        name: "Usuário Teste",
+        email: "usuario.teste@getid.com",
+        password: "teste123",
+        isAdmin: false,
       });
 
-      createdSellerUserId = createSellerUserResponse.body.id;
+    createdSellerUserId = createSellerUserResponse.body.id;
 
-      const createProductResponse = await request(app)
-        .post("/api/v1/products")
-        .set("Authorization", `Bearer ${token}`)
-        .field("name", "Weissbier 1l")
-        .field("price", "23.70")
-        .field("sellerId", createdSellerUserId)
-        .attach("file", imagePath);
+    const createProductResponse = await request(app)
+      .post("/api/v1/products")
+      .set("Authorization", `Bearer ${token}`)
+      .field("name", "Weissbier 1l")
+      .field("price", "23.70")
+      .field("sellerId", createdSellerUserId)
+      .attach("file", imagePath);
 
-      productId = createProductResponse.body.id;
+    productId = createProductResponse.body.id;
 
-      sale = {
-        deliveryAddress: "Rua Xablau",
-        deliveryNumber: "237",
-        status: "Pendente",
-        products: [
-          { id: productId, quantity: 2 },
-        ],
-      }
+    sale = {
+      deliveryAddress: "Rua Xablau",
+      deliveryNumber: "237",
+      status: "Pendente",
+      products: [{ id: productId, quantity: 2 }],
+    };
   });
 
   afterAll(async () => {
     if (createdSaleId) {
       await request(app)
-      .delete(`/api/v1/sales/${createdSaleId}`)
-      .set("Authorization", `Bearer ${token}`);
+        .delete(`/api/v1/sales/${createdSaleId}`)
+        .set("Authorization", `Bearer ${token}`);
     }
 
     if (productId) {
       await request(app)
-      .delete(`/api/v1/products/${productId}`)
-      .set("Authorization", `Bearer ${token}`);
+        .delete(`/api/v1/products/${productId}`)
+        .set("Authorization", `Bearer ${token}`);
     }
 
     if (createdSellerUserId) {
       await request(app)
-      .delete(`/api/v1/users/${createdSellerUserId}`)
-      .set("Authorization", `Bearer ${token}`);
+        .delete(`/api/v1/users/${createdSellerUserId}`)
+        .set("Authorization", `Bearer ${token}`);
     }
   });
 
@@ -112,10 +110,19 @@ describe("Testa POST /api/v1/sales", () => {
     it("Retorna as propriedades corretas", () => {
       expect(createSaleResponse.body[0]).toHaveProperty("id");
       expect(createSaleResponse.body[0]).toHaveProperty("userId");
-      expect(createSaleResponse.body[0]).toHaveProperty("sellerId", createdSellerUserId);
+      expect(createSaleResponse.body[0]).toHaveProperty(
+        "sellerId",
+        createdSellerUserId,
+      );
       expect(createSaleResponse.body[0]).toHaveProperty("totalPrice");
-      expect(createSaleResponse.body[0]).toHaveProperty("deliveryAddress", sale.deliveryAddress);
-      expect(createSaleResponse.body[0]).toHaveProperty("deliveryNumber", sale.deliveryNumber);
+      expect(createSaleResponse.body[0]).toHaveProperty(
+        "deliveryAddress",
+        sale.deliveryAddress,
+      );
+      expect(createSaleResponse.body[0]).toHaveProperty(
+        "deliveryNumber",
+        sale.deliveryNumber,
+      );
       expect(createSaleResponse.body[0]).toHaveProperty("saleDate");
       expect(createSaleResponse.body[0]).toHaveProperty("status", sale.status);
     });

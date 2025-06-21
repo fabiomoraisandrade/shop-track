@@ -26,7 +26,7 @@ describe("Testa PUT /api/v1/products/:id", () => {
         email: "usuario.teste@getid.com",
         password: "teste123",
         isAdmin: false,
-    });
+      });
 
     createdSellerUserId = createSellerUserResponse.body.id;
 
@@ -46,7 +46,7 @@ describe("Testa PUT /api/v1/products/:id", () => {
       urlImage: "http://localhost:3001/images/image-teste.jpg",
       sellerId: createdSellerUserId,
     };
-    
+
     response = await request(app)
       .put(`/api/v1/products/${createdProductId}`)
       .send(newProduct)
@@ -61,16 +61,16 @@ describe("Testa PUT /api/v1/products/:id", () => {
 
   afterAll(async () => {
     if (createdProductId) {
-        await request(app)
-          .delete(`/api/v1/products/${createdProductId}`)
-          .set("Authorization", `Bearer ${token}`);
-      }
+      await request(app)
+        .delete(`/api/v1/products/${createdProductId}`)
+        .set("Authorization", `Bearer ${token}`);
+    }
 
-      if (createdSellerUserId) {
-        await request(app)
-          .delete(`/api/v1/users/${createdSellerUserId}`)
-          .set("Authorization", `Bearer ${token}`);
-      }
+    if (createdSellerUserId) {
+      await request(app)
+        .delete(`/api/v1/users/${createdSellerUserId}`)
+        .set("Authorization", `Bearer ${token}`);
+    }
   });
 
   it("Atualiza produto no banco e volta com status 204", () => {

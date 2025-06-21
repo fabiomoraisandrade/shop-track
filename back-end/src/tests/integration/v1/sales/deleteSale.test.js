@@ -27,7 +27,7 @@ describe("Testa DELETE /api/v1/sales/:id", () => {
         email: "usuario.teste@getid.com",
         password: "teste123",
         isAdmin: false,
-    });
+      });
 
     createdSellerUserId = createSellerUserResponse.body.id;
 
@@ -45,10 +45,8 @@ describe("Testa DELETE /api/v1/sales/:id", () => {
       deliveryAddress: "Rua Xablau",
       deliveryNumber: "237",
       status: "Pendente",
-      products: [
-        { id: productId, quantity: 2 },
-      ],
-    }
+      products: [{ id: productId, quantity: 2 }],
+    };
 
     const createSaleResponse = await request(app)
       .post("/api/v1/sales")
@@ -61,22 +59,22 @@ describe("Testa DELETE /api/v1/sales/:id", () => {
   afterAll(async () => {
     if (productId) {
       await request(app)
-      .delete(`/api/v1/products/${productId}`)
-      .set("Authorization", `Bearer ${token}`);
+        .delete(`/api/v1/products/${productId}`)
+        .set("Authorization", `Bearer ${token}`);
     }
 
     if (createdSellerUserId) {
       await request(app)
-      .delete(`/api/v1/users/${createdSellerUserId}`)
-      .set("Authorization", `Bearer ${token}`);
+        .delete(`/api/v1/users/${createdSellerUserId}`)
+        .set("Authorization", `Bearer ${token}`);
     }
   });
 
   describe("Quando a deleção da sale é bem-sucedida", () => {
     beforeAll(async () => {
       deleteResponse = await request(app)
-      .delete(`/api/v1/sales/${saleId}`)
-      .set("Authorization", `Bearer ${token}`);
+        .delete(`/api/v1/sales/${saleId}`)
+        .set("Authorization", `Bearer ${token}`);
 
       fetchDeletedSaleResponse = await request(app)
         .get(`/api/v1/sales/${saleId}`)
