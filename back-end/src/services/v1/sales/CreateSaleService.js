@@ -1,14 +1,11 @@
-const Sequelize = require("sequelize");
 const config = require("../../../database/config/config");
-const { Product, Sale, SalesProduct } = require("../../../database/models");
+const { Product, Sale, SalesProduct, sequelize } = require("../../../database/models");
 const { schemaSales } = require("../../../validators");
 const {
   badRequest,
   notFound,
   internalError,
 } = require("../../../errors/ApiError");
-
-const sequelize = new Sequelize(config.development);
 
 const getProductData = async (products) => {
   const productIds = products.map((p) => p.id);
