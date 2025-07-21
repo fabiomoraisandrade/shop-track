@@ -198,6 +198,6 @@ npm test
 
 ## 🌐 Deploy
 
-- **Front-end**: [Vercel](https://shop-track-front.vercel.app)
+- **Front-end**: [Vercel](https://shop-track.vercel.app/login)
 - **Back-end**: [Render](https://shop-track-back-end.onrender.com)
 - **Banco de dados**: Neon Tech (PostgreSQL)
